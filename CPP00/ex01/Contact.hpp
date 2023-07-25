@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 15:59:27 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/24 16:28:27 by gacorrei         ###   ########.fr       */
+/*   Created: 2023/07/25 09:28:07 by gacorrei          #+#    #+#             */
+/*   Updated: 2023/07/25 10:02:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 # include <iostream>
 
@@ -35,13 +35,6 @@ class Contact
 		const std::string	get_nickname(void) const;
 		const std::string	get_phone_number(void) const;
 		const std::string	get_darkest_secret(void) const;
-};
-
-class PhoneBook
-{
-	// It has an array of contacts.
-	// It can store a maximum of 8 contacts. If the user tries to add a 9th contact, replace the oldest one by the new one.
-	// Please note that dynamic allocation is forbidden
 };
 
 #endif
