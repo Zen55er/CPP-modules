@@ -6,11 +6,21 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:04:27 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/25 12:18:50 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:21:43 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+int	strncmp(std::string str1, std::string str2)
+{
+	int	i = 0;
+
+	for (i; str1[i]; i++)
+		if (str1[i] != str2[i])
+			break;
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+}
 
 int	strlen(std::string str)
 {
@@ -41,9 +51,40 @@ int	check_number(const std::string check)
 	return (0);
 }
 
-void	print_contact(Contact contact)
+void	print_column(std::string info)
 {
-	
+	int	len;
+	int	align;
+
+	len = strlen(info);
+	if (len < 10)
+	{
+		align = 10 - len;
+		for (int i = 0; i < align; i++)
+			std::cout << " ";
+	}
+	else if (len > 10)
+	{
+		for (int i = 0; i < 9; i++)
+			std::cout << info[i];
+		std::cout << ".";
+	}
+	else
+		std::cout << info;
+	return;
+}
+
+void	print_contact(Contact contact, int index)
+{
+	std::cout << "         ";
+	std::cout << index;
+	std::cout << "|";
+	print_column(contact.get_first_name());
+	std::cout << "|";
+	print_column(contact.get_last_name());
+	std::cout << "|";
+	print_column(contact.get_nickname());
+	std::cout << std::endl;
 }
 
 int		PhoneBook::get_current_size(void) const
@@ -94,18 +135,47 @@ void	PhoneBook::add_contact(void)
 		this->current_size++;
 }
 
-void	PhoneBook::search_contact(int index) const
+void	PhoneBook::search_contact(void) const
 {
-	if (index < 0 || index > 7)
+	int	index;
+	
+	for (int i = 0; i < get_current_size(); i++)
+		print_contact(this->contacts[i], i);
+	while (1)
 	{
-		std::cout << "Input an index in range [0 - 7]/n";
-		return ;
+		std::cout << "Choose index to display: ";
+		std::cin >> index;
+		std::cout << std::endl;
+		if (index < 0 || index > 7)
+			std::cout << "Input an index in range [0 - 7]\n";
+		else if (index > get_current_size() - 1)
+			std::cout << "There is no contact for selected index\n";
+		else
+			break;
 	}
-	else if (index < get_current_size() - 1)
-	{
-		std::cout << "There is no contact for selected index/n";
-		return ;
-	}
-	print_contact(this->contacts[index]);
+	print_contact(this->contacts[index], index);
 	return;
+}
+
+int	main(void)
+{
+	std::string input;
+
+	while (1)
+	{
+		std::cout << "PhoneBook: Choose one:\n[ADD]\n[SEARCH]\n[EXIT]\n";
+		std::cin >> input;
+		if (!strncmp(input, "ADD"))
+		{
+			//
+			break ;
+		}
+		else if (!strncmp(input, "SEARCH"))
+		{
+			//
+			break ;
+		}
+		else if (!strncmp(input, "EXIT"))
+			break;
+	}
 }
