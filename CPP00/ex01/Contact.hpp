@@ -6,10 +6,11 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:28:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/28 09:40:37 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:43:01 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
