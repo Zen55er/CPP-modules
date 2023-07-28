@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:04:27 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/27 15:23:19 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:50:14 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ PhoneBook::PhoneBook()
 {
 	this->current_size = 0;
 	this->index  = 0;
-	// std::cout << "constructed\n";
+	// std::cout << "constructed phonebook\n";
 };
 
 PhoneBook::~PhoneBook()
 {
-	// std::cout << "destroyed";
+	// std::cout << "destroyed phonebook";
 };
 
 int		PhoneBook::get_current_size(void)
@@ -38,9 +38,9 @@ void	PhoneBook::print_phonebook(void)
 {
 	print_separator(0);
 	print_separator(1);
+	print_separator(0);
 	for (int i = 0; i < this->get_current_size(); i++)
 	{
-		print_separator(0);
 		std::cout << "|" << std::setw(10) << i << "|";
 		print_field(this->contacts[i].get_first_name());
 		print_field(this->contacts[i].get_last_name());
@@ -89,7 +89,7 @@ int	PhoneBook::search_contact(void)
 	std::cin.clear();
 	std::cout << std::endl;
 	index = std::atoi(s_index.c_str());
-	if (check_string(s_index, 1) || index < 0 || index >= this->get_current_size())
+	if (check_string(s_index, 1) || index < 0 || index > 7)
 	{
 		std::cout << "Index not in range [0 - " << this->get_current_size() - 1 << "]\n";
 		return (0);
@@ -97,6 +97,6 @@ int	PhoneBook::search_contact(void)
 	else if (index > get_current_size() - 1)
 		std::cout << "There is no contact for selected index\n";
 	else
-		print_contact(this->contacts[index]);
+		this->contacts[index].print_contact();
 	return (0);
 }

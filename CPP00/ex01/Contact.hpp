@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:28:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/25 10:02:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:40:37 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class Contact
 		std::string	darkest_secret;
 
 	public:
+		Contact();
+		~Contact();
 		void				set_first_name(std::string first_name);
 		void				set_last_name(std::string last_name);
 		void				set_nickname(std::string nickname);
@@ -35,6 +37,7 @@ class Contact
 		const std::string	get_nickname(void) const;
 		const std::string	get_phone_number(void) const;
 		const std::string	get_darkest_secret(void) const;
+		void				print_contact(void);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:59:27 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/27 15:10:50 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:36:54 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int			check_string(std::string check, int flag);
 std::string	get_info(std::string field, int flag);
 void		print_field(std::string info);
 void		print_separator(int flag);
-void		print_contact(Contact contact);
 
 #endif

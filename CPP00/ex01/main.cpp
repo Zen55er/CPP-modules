@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:25 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/07/27 15:22:22 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:39:36 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ std::string	get_info(std::string field, int flag)
 
 	while (check_string(input, flag))
 	{
-		std::cout << "Contact's " << field << ":";
+		std::cout << "Contact's " << field << ": ";
 		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
@@ -47,15 +47,6 @@ std::string	get_info(std::string field, int flag)
 		std::cin.clear();
 	}
 	return (input);
-}
-
-void	print_contact(Contact contact)
-{
-	std::cout << "First Name: " << contact.get_first_name() << std::endl;
-	std::cout << "Last Name: " << contact.get_last_name() << std::endl;
-	std::cout << "Nickname: " << contact.get_nickname() << std::endl;
-	std::cout << "Phone Number: " << contact.get_phone_number() << std::endl;
-	std::cout << "Darkest Secret: " << contact.get_darkest_secret() << std::endl;
 }
 
 void	print_field(std::string info)
