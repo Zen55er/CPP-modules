@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 10:32:10 by gacorrei          #+#    #+#              #
-#    Updated: 2023/07/28 10:33:29 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/07/31 12:21:17 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
+NAME	= accounts
 SRC		= Account.cpp tests.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -g3 -std=c++98 -fsanitize=address,undefined
+CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
 
 all:		$(NAME)
 
