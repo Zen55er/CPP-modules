@@ -6,13 +6,13 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:24:41 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/03 10:49:48 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:54:35 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "replace.hpp"
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {	
 	if (ac != 4)
 	{
@@ -20,9 +20,9 @@
 		return (1);
 	}
 	return (replace(av[1], av[2], av[3]));
-} */
+}
 
-int	main(void)
+/* int	main(void)
 {
 	replace("test_simple", "abc", "def");
 	replace("test_multiple", "123", "789");
@@ -30,4 +30,4 @@ int	main(void)
 	replace("test_empty", "123", "456");
 	replace("test_null", "123", "456");
 	return (0);
-}
+} */
