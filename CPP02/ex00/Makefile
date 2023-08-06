@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
-SRC		= 
+NAME	= fixed
+SRC		= main.cpp Fixed.cpp
 CC		= @c++
 CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
 
