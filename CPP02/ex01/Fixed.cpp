@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/06 09:28:35 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/07 12:01:25 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ static	float ft_pow(float base, int exp)
 
 	if (!exp)
 		return (1);
-	if (exp < 0)
-	{
-		base = 1 / base;
-		exp *= -1;
-	}
 	result = base;
 	while (--exp)
 		result *= base;
@@ -39,15 +34,13 @@ Fixed::Fixed(void)
 
 Fixed::Fixed(const int value)
 {
-	// this->_value = value;
 	this->_value = value * ft_pow(2, this->_bits);
 	std::cout << "Constructor called (with int)\n";
 }
 
 Fixed::Fixed(const float value)
 {
-	// this->_value = (int)roundf(value);
-	this->_value = value * ft_pow(2, this->_bits);
+	this->_value = roundf(value * ft_pow(2, this->_bits));
 	std::cout << "Constructor called (with float)\n";
 }
 
@@ -76,7 +69,6 @@ std::ostream	&operator<<(std::ostream &out, Fixed const &fp_num)
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called\n";
 	return (this->_value);
 }
 
@@ -87,10 +79,10 @@ void Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (this->_value * ft_pow(2, -this->_bits));
+	return (this->_value / ft_pow(2, this->_bits));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (this->_value * ft_pow(2, -this->_bits));
+	return (this->_value / ft_pow(2, this->_bits));
 }
