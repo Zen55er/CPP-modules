@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/08 16:21:15 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/09 10:07:29 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,32 +117,35 @@ bool	Fixed::operator!=(Fixed const &fixed_copy) const
 	return (this->getRawBits() != fixed_copy.getRawBits());
 }
 
-Fixed	Fixed::operator+(Fixed const &fixed_copy) const
+Fixed	Fixed::operator+(Fixed const &fixed_copy)
 {
-	Fixed	result(this->toFloat() + fixed_copy.toFloat());
+	Fixed	temp;
 
-	return (result);
+	temp.setRawBits(this->getRawBits() + fixed_copy.getRawBits());
+	return(temp);
 }
 
-Fixed	Fixed::operator-(Fixed const &fixed_copy) const
+Fixed	Fixed::operator-(Fixed const &fixed_copy)
 {
-	Fixed	result(this->toFloat() - fixed_copy.toFloat());
+	Fixed	temp;
 
-	return (result);
+	temp.setRawBits(this->getRawBits() - fixed_copy.getRawBits());
+	return(temp);
 }
 
-Fixed	Fixed::operator*(Fixed const &fixed_copy) const
+Fixed	Fixed::operator*(Fixed const &fixed_copy)
 {
-	Fixed	result(this->toFloat() * fixed_copy.toFloat());
-
-	return (result);
+	Fixed	temp;
+	temp.setRawBits(((int64_t)this->getRawBits() * (int64_t)fixed_copy.getRawBits()) / ft_pow(2, this->_bits));
+	return(temp);
 }
 
-Fixed	Fixed::operator/(Fixed const &fixed_copy) const
+Fixed	Fixed::operator/(Fixed const &fixed_copy)
 {
-	Fixed	result(this->toFloat() / fixed_copy.toFloat());
+	Fixed temp;
 
-	return (result);
+	temp.setRawBits(((int64_t)this->getRawBits() * ft_pow(2, this->_bits)) / (int64_t)fixed_copy.getRawBits());
+	return(temp);
 }
 
 Fixed	Fixed::operator++(void)

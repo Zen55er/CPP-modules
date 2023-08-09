@@ -4,7 +4,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/CPP02/ex02/fixed",
+            "program": "${workspaceFolder}/CPP02/ex03/point",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
