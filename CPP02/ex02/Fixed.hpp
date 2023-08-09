@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/08 09:45:06 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:31:41 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ class Fixed
 		bool	operator<(Fixed const &fixed_copy) const;
 		bool	operator>(Fixed const &fixed_copy) const;
 		bool	operator!=(Fixed const &fixed_copy) const;
-		Fixed	operator+(Fixed const &fixed_copy) const;
-		Fixed	operator-(Fixed const &fixed_copy) const;
-		Fixed	operator*(Fixed const &fixed_copy) const;
-		Fixed	operator/(Fixed const &fixed_copy) const;
+		Fixed	operator+(Fixed const &fixed_copy);
+		Fixed	operator-(Fixed const &fixed_copy);
+		Fixed	operator*(Fixed const &fixed_copy);
+		Fixed	operator/(Fixed const &fixed_copy);
 		Fixed	operator++(void);
 		Fixed	operator++(int dummy);
 		Fixed	operator--(void);
