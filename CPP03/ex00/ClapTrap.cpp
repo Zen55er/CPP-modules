@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:33:29 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 15:27:30 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/10 08:07:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ClapTrap::~ClapTrap()
 	std::cout << "Called destructor for " << this->_name << std::endl;
 }
 
-ClapTrap &ClapTrap::operator=(ClapTrap copy)
+ClapTrap &ClapTrap::operator=(const ClapTrap &copy)
 {
 	std::cout << "Called copy assignment operator\n";
 	this->_name = copy.get_name();
@@ -50,14 +50,15 @@ void ClapTrap::attack(const std::string &target)
 {
 	if (!this->_energy_points)
 	{
-		std::cout << "No energy points, can't attack\n";
+		std::cout << this->get_name() <<  " has no energy points, can't attack\n";
 		return ;
 	}
 	if (!this->_hit_points)
 	{
-		std::cout << "No hit points, can't attack\n";
+		std::cout << this->get_name() <<  " has no hit points, can't attack\n";
 		return ;
 	}
+	this->_energy_points--;
 	std::cout << this->_name << " attacked " << target << " for " << this->_attack_damage << " points of damage\n";
 }
 
@@ -65,7 +66,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (!this->_hit_points)
 	{
-		std::cout << "Stop, it's already dead!\n";
+		std::cout << "Stop! " << this->get_name() << " is already dead!\n";
 		return ;
 	}
 	if (amount > this->_hit_points)
@@ -79,17 +80,17 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (!this->_energy_points)
 	{
-		std::cout << "No energy points, can't repair\n";
+		std::cout << this->get_name() <<  " has no energy points, can't repair\n";
 		return ;
 	}
 	if (!this->_hit_points)
 	{
-		std::cout << "No hit points, can't repair\n";
+		std::cout << this->get_name() <<  " has no hit points, can't repair\n";
 		return ;
 	}
 	if (this->_hit_points == 10)
 	{
-		std::cout << "Already at max health\n";
+		std::cout << this->get_name() <<  " is already at max health\n";
 		return ;
 	}
 	std::cout << this->_name << " repaired " << amount << " hit points\n";

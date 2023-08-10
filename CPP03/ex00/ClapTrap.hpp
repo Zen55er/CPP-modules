@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:14:19 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 15:19:39 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/10 08:07:26 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &copy);
 		~ClapTrap();
-		ClapTrap 		&operator=(ClapTrap copy);
+		ClapTrap 		&operator=(const ClapTrap &copy);
 		void 			attack(const std::string& target);
 		void 			takeDamage(unsigned int amount);
 		void 			beRepaired(unsigned int amount);
