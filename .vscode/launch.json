@@ -4,7 +4,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/CPP02/ex03/point",
+            "program": "${workspaceFolder}/CPP03/ex01/scavtrap",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
