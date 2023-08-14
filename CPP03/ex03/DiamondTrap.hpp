@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:38:48 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/14 11:44:12 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:34:10 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 #ifndef DIAMONDTRAP_HPP
 # define DIAMONDTRAP_HPP
 
-#include <iostream>
+# include <iostream>
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
-class DiamondTrap : 
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 	private:
 		std::string	_name;
 	public:
+		DiamondTrap();
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap &copy);
+		~DiamondTrap();
+		void	whoAmI();
 };
 
 #endif
