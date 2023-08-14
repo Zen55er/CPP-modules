@@ -6,12 +6,12 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/08/11 11:26:20 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/08/14 10:00:00 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fragtrap
-SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTRap.cpp
+SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 CC		= @c++
 CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
 

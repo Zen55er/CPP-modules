@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 08:47:46 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/11 11:21:27 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/14 09:42:29 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ ScavTrap::ScavTrap()
 	std::cout << "Called ScavTrap default constructor\n";
 	std::cout << this->get_name() << ": My maker forgot to name me so I named myself\n";
 	this->_guarding = false;
+	this->set_hit_points(100);
+	this->set_energy_points(50);
+	this->set_attack_damage(20);
 }
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name)
@@ -24,6 +27,9 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 	std::cout << "Called ScavTrap default constructor with name: " << name << std::endl;
 	std::cout << this->get_name() << ": I'm alive!\n";
 	this->_guarding = false;
+	this->set_hit_points(100);
+	this->set_energy_points(50);
+	this->set_attack_damage(20);
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy)
