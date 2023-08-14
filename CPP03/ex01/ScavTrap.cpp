@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 08:47:46 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/14 09:41:25 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:26:55 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void ScavTrap::attack(const std::string &target)
 		std::cout << this->get_name() <<  ": *Dead robot noises*\n(That means no hit points to attack)\n";
 		return ;
 	}
-	this->set_energy_points(this->get_energy_points() - 10);
+	this->set_energy_points(this->get_energy_points() - 1);
 	std::cout << this->get_name() << ": I aggressively hugged " << target << " for " << this->get_attack_damage() << " (deserved) points of damage\n";
 }
 
