@@ -12,7 +12,7 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "Called FragTrap default constructor\n";
 	this->set_hit_points(100);
@@ -28,7 +28,7 @@ FragTrap::FragTrap(std::string name): ClapTrap(name)
 	this->set_attack_damage(30);
 }
 
-FragTrap::FragTrap(const FragTrap &copy)
+FragTrap::FragTrap(const FragTrap &copy) : ClapTrap()
 {
 	std::cout << "Called FragTrap copy constructor\n";
 	this->set_name(copy.get_name());
@@ -39,8 +39,8 @@ FragTrap::FragTrap(const FragTrap &copy)
 
 FragTrap::~FragTrap()
 {
-	std::cout << "Called FragTrap destructor\n";
-	std::cout << "Decommissioning " << this->get_name() << std::endl;
+	std::cout << "Called FragTrap destructor for " << this->_name << std::endl;
+	// std::cout << "Decommissioning " << this->get_name() << std::endl;
 }
 
 FragTrap	&FragTrap::operator=(const FragTrap &copy)
@@ -55,5 +55,5 @@ FragTrap	&FragTrap::operator=(const FragTrap &copy)
 
 void		FragTrap::highFivesGuys(void)
 {
-	std::cout << "Gimme five\n(Raises robotic hand with conspicuous tack)\n";
+	std::cout << "Gimme five!\n(Raises robotic hand with conspicuous tack)\n";
 }

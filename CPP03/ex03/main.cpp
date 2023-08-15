@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	FragTrap	c1;
-	FragTrap	c2("Larry");
-	FragTrap	c3(c1);
-	FragTrap	c4;
+	DiamondTrap	c1;
+	DiamondTrap	c2("Jerry");
+	DiamondTrap	c3(c1);
+	DiamondTrap	c4;
 	
 	c4 = c2;
 	for (int i = 0; i < 5; i++)
@@ -35,10 +35,10 @@ int	main(void)
 		c4.takeDamage(c3.get_attack_damage());
 		c4.beRepaired(c3.get_attack_damage() / 2);		
 	}
-	for (int i = 0; i < 95; i++)
-		c3.attack("Random wall");
+	c3.set_energy_points(0);
 	c3.beRepaired(1);
 	c3.attack(c4.get_name());
 	c3.highFivesGuys();
+	c3.whoAmI();
 	return (0);
 }
