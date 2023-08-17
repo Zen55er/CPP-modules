@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 12:51:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/16 12:58:02 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:17:36 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Dog : public Animal
 		Dog(const Dog &copy);
 		~Dog();
 		Dog 	&operator=(const Dog &copy);
-		void	makeSound() const;
+		void	makeSound() const override;
 };
 
 #endif

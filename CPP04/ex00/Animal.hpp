@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 08:44:32 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/16 13:55:51 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/17 08:54:01 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class Animal
 		Animal(std::string type);
 		Animal(const Animal &copy);
 		virtual ~Animal();
-		Animal		&operator=(const Animal &copy);
-		std::string	getType() const;
+		Animal				&operator=(const Animal &copy);
+		std::string			getType() const;
 		virtual void		makeSound() const;
 };
 
