@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:12 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 10:07:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:33:59 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int main( void )
 	if (c >= d)
 		std::cout << "c is greater than/equal to d\n";
 	else
-		std::cout << "c is greater than/equal to d\n";
+		std::cout << "c is NOT greater than/equal to d\n";
 	if (c <= d)
 		std::cout << "c is smaller than/equal to d\n";
 	else
-		std::cout << "c is smaller than/equal to d\n";
+		std::cout << "c is NOT smaller than/equal to d\n";
 	std::cout << "\na = " << a << std::endl;
 	std::cout << "b = " << b << std::endl;
 	std::cout << "c = " << c << std::endl;
