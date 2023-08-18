@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 14:01:04 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/17 14:18:38 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:23:26 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 
 class Brain
 {
+	private:
+		std::string	_ideas[100];
 	public:
-		std::string	ideas[100];
 		Brain();
 		Brain(const Brain &copy);
 		~Brain();
-		Brain	&operator=(const Brain &copy);
+		Brain		&operator=(const Brain &copy);
+		std::string	get_idea(int index) const;
+		void		set_idea(int index, std::string idea);
 };
 
 #endif

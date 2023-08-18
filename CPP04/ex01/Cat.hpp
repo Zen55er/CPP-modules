@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:33:28 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/17 14:19:34 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:50:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Cat : public Animal
 		~Cat();
 		Cat 	&operator=(const Cat &copy);
 		void	makeSound() const;
+		void	lightbulb(int i, std::string idea);
+		void	ponder(int i);
 };
 
 #endif

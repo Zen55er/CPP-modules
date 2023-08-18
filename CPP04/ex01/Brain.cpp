@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 14:09:49 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/17 14:37:41 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:34:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ Brain	&Brain::operator=(const Brain &copy)
 {
 	std::cout << "Called Brain copy assignment operator\n";
 	for (int i = 0; i < 100; i++)
-		this->ideas[i] = copy.ideas[i];
+		this->_ideas[i] = copy.get_idea(i);
 	return (*this);
+}
+
+std::string	Brain::get_idea(int index) const
+{
+	return (this->_ideas[index]);
+}
+
+void		Brain::set_idea(int index, std::string idea)
+{
+	this->_ideas[index] = idea;
 }

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 12:51:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/17 14:19:24 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:49:11 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Dog : public Animal
 		~Dog();
 		Dog 	&operator=(const Dog &copy);
 		void	makeSound() const;
+		void	lightbulb(int i, std::string idea);
+		void	ponder(int i);
 };
 
 #endif
