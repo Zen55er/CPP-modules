@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:24:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/18 15:45:54 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:57:47 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ class AMateria
 {
 	protected:
 		std::string	type;
-	public:
 		AMateria();
 		AMateria(std::string const &type);
+	public:
 		AMateria(const AMateria &copy);
 		virtual ~AMateria();
 		AMateria	&operator=(const AMateria &copy);
