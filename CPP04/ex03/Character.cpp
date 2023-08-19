@@ -20,7 +20,7 @@ Character::Character()
 
 Character::Character(std::string name)
 {
-	std::cout << "Called Character constructor\n";
+	std::cout << "Called Character constructor with name " << name << std::endl;
 	this->_name = name;
 }
 
@@ -62,4 +62,3 @@ void		Character::use(int idx, ICharacter &target)
 {
 	
 }
-
