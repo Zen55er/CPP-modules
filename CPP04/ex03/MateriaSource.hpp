@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 14:35:53 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/19 14:46:59 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:38:47 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@
 #include <iostream>
 #include "IMateriaSource.hpp"
 
-class MateriaSource
+class MateriaSource : public IMateriaSource
 {
 	private:
+		AMateria	*_materias[4];
 	public:
-		void	learnMateria(AMateria *new_materia);
+		MateriaSource();
+		MateriaSource(const MateriaSource &copy);
+		~MateriaSource();
+		MateriaSource &operator=(const MateriaSource &copy);
+		void		learnMateria(AMateria *new_materia);
 		AMateria	*createMateria(std::string const & type);
 };
 
