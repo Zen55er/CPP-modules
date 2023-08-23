@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 14:35:53 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/22 12:56:36 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:28:42 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class MateriaSource : public IMateriaSource
 {
 	private:
 		AMateria	*_materias[4];
-		int			_size;
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &copy);

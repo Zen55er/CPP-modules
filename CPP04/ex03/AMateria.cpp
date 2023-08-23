@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:29:38 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 09:05:11 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:27:58 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-	std::cout << this->_type << " was spontaneously used on " << target.getName();
+	std::cout << this->_type << " was used on " << target.getName();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:37:45 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/22 13:18:59 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:37:12 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,59 @@
 MateriaSource::MateriaSource()
 {
 	std::cout << "Called MateriaSource default constructor\n";
-	this->_size = 0;
+	for (int i = 0; i < 4; i++)
+		this->_materias[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &copy)
 {
 	std::cout << "Called MateriaSource copy constructor\n";
-	this->_size = copy._size;
+	for (int i = 0; i < 4; i++)
+		this->_materias[i] = copy._materias[i]->clone();
 }
 
 MateriaSource::~MateriaSource()
 {
 	std::cout << "Called MateriaSource destructor\n";
+	for (int i = 0; this->_materias[i]; i++)
+		delete this->_materias[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &copy)
 {
 	std::cout << "Called MateriaSource copy assignment operator\n";
-	this->_size = copy._size;
-	for (int i = 0; i < 4; i++)
-		this->_materias[i] = copy._materias[i];
+	for (int i = 0; copy._materias[i]; i++)
+	{
+		if (this->_materias[i])
+			delete this->_materias[i];
+		this->_materias[i] = copy._materias[i]->clone();
+	}
 	return (*this);
 }
 
 void		MateriaSource::learnMateria(AMateria *new_materia)
 {
+	int	i = 0;
+	
 	if (!new_materia)
 	{
-		std::cout << "Can't learn from non-existent materias\n";
+		std::cout << "Can't learn non-existent materias\n";
 		return ;
 	}
-	if (this->_size == 4)
+	if (this->_materias[3])
 	{
 		std::cout << "Can't learn any more materias\n";
 		return ;
 	}
-	this->_materias[this->_size % 4] = new_materia;
-	this->_size++;
+	while (this->_materias[i] && i < 4)
+		i++;
+	this->_materias[i] = new_materia;
+	std::cout << "Learned new materia " << new_materia->getType() << std::endl;
 }
 
 AMateria	*MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; this->_size && i < this->_size; i++)
+	for (int i = 0; this->_materias[i]; i++)
 	{
 		if (type == this->_materias[i]->getType())
 			return (this->_materias[i]->clone());
