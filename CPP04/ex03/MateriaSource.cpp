@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:37:45 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 11:37:12 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:41:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ MateriaSource::MateriaSource(const MateriaSource &copy)
 MateriaSource::~MateriaSource()
 {
 	std::cout << "Called MateriaSource destructor\n";
-	for (int i = 0; this->_materias[i]; i++)
+	for (int i = 0; i < 4 && this->_materias[i]; i++)
 		delete this->_materias[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &copy)
 {
 	std::cout << "Called MateriaSource copy assignment operator\n";
-	for (int i = 0; copy._materias[i]; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materias[i])
 			delete this->_materias[i];
@@ -59,7 +59,7 @@ void		MateriaSource::learnMateria(AMateria *new_materia)
 		std::cout << "Can't learn any more materias\n";
 		return ;
 	}
-	while (this->_materias[i] && i < 4)
+	while (i < 4 && this->_materias[i])
 		i++;
 	this->_materias[i] = new_materia;
 	std::cout << "Learned new materia " << new_materia->getType() << std::endl;
@@ -67,7 +67,7 @@ void		MateriaSource::learnMateria(AMateria *new_materia)
 
 AMateria	*MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; this->_materias[i]; i++)
+	for (int i = 0; i < 4 && this->_materias[i]; i++)
 	{
 		if (type == this->_materias[i]->getType())
 			return (this->_materias[i]->clone());

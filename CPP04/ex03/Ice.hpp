@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:32:51 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/19 10:02:47 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:07:54 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 class Ice : public AMateria
 {
-	private:
-		std::string	_type;
 	public:
 		Ice();
 		Ice(const Ice &copy);

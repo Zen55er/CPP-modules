@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:36:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 12:50:18 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:43:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ Character::Character(const Character &copy)
 {
 	std::cout << "Called Character copy constructor\n";
 	this->_name = copy.getName();
-	for (int i = 0; copy._inventory[i]; i++)
+	for (int i = 0; i < 4 && copy._inventory[i]; i++)
 		this->_inventory[i] = copy._inventory[i]->clone();
 }
 
 Character::~Character()
 {
 	std::cout << "Called Character destructor for " << this->_name << std::endl;
-	for (int i = 0; this->_inventory[i]; i++)
+	for (int i = 0; i < 4 && this->_inventory[i]; i++)
 		delete this->_inventory[i];
 }
 
@@ -47,7 +47,7 @@ Character &Character::operator=(const Character &copy)
 {
 	std::cout << "Called Character copy assignment operator\n";
 	this->_name = copy.getName();
-	for (int i = 0; copy._inventory[i]; i++)
+	for (int i = 0; i < 4 && copy._inventory[i]; i++)
 	{
 		if (this->_inventory[i])
 			delete this->_inventory[i];
@@ -78,7 +78,7 @@ void		Character::equip(AMateria *m)
 	while (this->_inventory[i] && i < 4)
 		i++;
 	this->_inventory[i] = m;
-	std::cout << this->_name << "equipped " << m->getType() << "on slot " << i << std::endl;
+	std::cout << this->_name << " equipped " << m->getType() << " on slot " << i << std::endl;
 }
 
 void		Character::unequip(int idx)
