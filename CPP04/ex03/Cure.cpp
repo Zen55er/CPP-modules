@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 10:01:36 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/19 10:04:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:17:07 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ Cure	&Cure::operator=(const Cure &copy)
 
 Cure	*Cure::clone() const
 {
-	
+	Cure	*clone = new Cure();
+
+	return (clone);
 }
 
 void Cure::use(ICharacter &target)
