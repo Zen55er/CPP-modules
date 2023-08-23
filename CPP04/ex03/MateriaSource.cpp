@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:37:45 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 13:41:46 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:14:43 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ MateriaSource::MateriaSource(const MateriaSource &copy)
 {
 	std::cout << "Called MateriaSource copy constructor\n";
 	for (int i = 0; i < 4; i++)
-		this->_materias[i] = copy._materias[i]->clone();
+	{
+		if (copy._materias[i])
+			this->_materias[i] = copy._materias[i]->clone();
+		else
+			this->_materias[i] = NULL;
+	}
 }
 
 MateriaSource::~MateriaSource()
@@ -40,7 +45,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &copy)
 	{
 		if (this->_materias[i])
 			delete this->_materias[i];
-		this->_materias[i] = copy._materias[i]->clone();
+		if (copy._materias[i])
+			this->_materias[i] = copy._materias[i]->clone();
+		else
+			this->_materias[i] = NULL;
 	}
 	return (*this);
 }

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:36:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 13:43:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:53:50 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Character::Character(const Character &copy)
 Character::~Character()
 {
 	std::cout << "Called Character destructor for " << this->_name << std::endl;
-	for (int i = 0; i < 4 && this->_inventory[i]; i++)
+	for (int i = 0; i < 4; i++)
 		delete this->_inventory[i];
 }
 
@@ -93,15 +93,16 @@ void		Character::unequip(int idx)
 		std::cout << "There is nothing equipped in slot " << idx << std::endl;
 		return ;
 	}
+	std::cout << this->_name << " unequipped " << this->_inventory[idx]->getType() << " from slot " << idx << std::endl;
 	this->_inventory[idx] = NULL;
-	for (int i = 0; i < 3; i++)
+	/* for (int i = 0; i < 3; i++)
 	{
 		if (!this->_inventory[i] && this->_inventory[i + 1])
 		{
 			this->_inventory[i] = this->_inventory[i + 1];
 			this->_inventory[i + 1] = NULL;
 		}
-	}
+	} */
 }
 
 void		Character::use(int idx, ICharacter &target)
