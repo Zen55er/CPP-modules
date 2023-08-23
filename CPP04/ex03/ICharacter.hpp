@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:12:21 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 09:31:55 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:45:37 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <iostream>
 # include "AMateria.hpp"
 
+class AMateria;
 class ICharacter
 {
 	public:

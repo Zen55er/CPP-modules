@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:38:35 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 09:28:26 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:49:33 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Ice::Ice()
 
 Ice::Ice(const Ice &copy)
 {
+	(void)copy;
 	std::cout << "Called Ice copy constructor\n";
 	this->_type = "ice";
 }
@@ -31,6 +32,7 @@ Ice::~Ice()
 
 Ice	&Ice::operator=(const Ice &copy)
 {
+	(void)copy;
 	std::cout << "Called Ice copy assignment operator\n";
 	this->_type = "ice";
 	return (*this);

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:23:42 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 09:44:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:46:47 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class Character : public ICharacter
 		Character(const Character &copy);
 		~Character();
 		Character 	&operator=(const Character &copy);
-		std::string	const &getName() const = 0;
-		void		equip(AMateria *m) = 0;
-		void		unequip(int idx) = 0;
-		void		use(int idx, ICharacter &target) = 0;
+		std::string	const &getName() const;
+		void		equip(AMateria *m);
+		void		unequip(int idx);
+		void		use(int idx, ICharacter &target);
 };
 
 #endif

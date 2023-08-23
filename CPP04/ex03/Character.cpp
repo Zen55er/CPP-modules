@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:36:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 11:35:13 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:50:18 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ Character &Character::operator=(const Character &copy)
 			delete this->_inventory[i];
 		this->_inventory[i] = copy._inventory[i]->clone();
 	}
+	return (*this);
 }
 
 std::string	const &Character::getName() const
