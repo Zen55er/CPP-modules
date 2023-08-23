@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:29:38 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/18 15:46:53 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:05:11 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,38 @@
 AMateria::AMateria()
 {
 	std::cout << "Called AMateria default constructor\n";
-	this->type = WHAT?????;
 }
 
 AMateria::AMateria(std::string const &type)
 {
 	std::cout << "Called AMateria constructor\n";
-	this->type = type;
+	this->_type = type;
 }
 
 AMateria::AMateria(const AMateria &copy)
 {
 	std::cout << "Called AMateria copy constructor\n";
-	//this->type = type; DOES NOT MAKE SENSE?
+	this->_type = copy._type;
 }
 
 AMateria::~AMateria()
 {
 	std::cout << "Called AMateria destructor\n";
 }
+
 AMateria	&AMateria::operator=(const AMateria &copy)
 {
 	std::cout << "Called AMateria copy assignment operator\n";
-	//this->type = type; DOES NOT MAKE SENSE?
+	this->_type = copy._type;
 	return (*this);
 }
 
 std::string const &AMateria::getType() const
 {
-	return (this->type);
+	return (this->_type);
 }
 
-void AMateria::use(ICharacter &target) {}
+void AMateria::use(ICharacter &target)
+{
+	std::cout << this->_type << " was spontaneously used on " << target.getName();
+}

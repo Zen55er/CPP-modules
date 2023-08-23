@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:23:42 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/18 15:39:31 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 08:40:41 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define CHARACTER_HPP
 
 # include <iostream>
-# include "AMateria.hpp"
 # include "ICharacter.hpp"
 
 class Character : public ICharacter
