@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 10:01:36 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 09:17:07 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:28:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Cure::Cure()
 Cure::Cure(const Cure &copy)
 {
 	std::cout << "Called Cure copy constructor\n";
-	this->_type = copy._type;
+	this->_type = "cure";
 }
 
 Cure::~Cure()
@@ -32,7 +32,7 @@ Cure::~Cure()
 Cure	&Cure::operator=(const Cure &copy)
 {
 	std::cout << "Called Cure copy assignment operator\n";
-	this->_type = copy._type;
+	this->_type = "cure";
 	return (*this);
 }
 
