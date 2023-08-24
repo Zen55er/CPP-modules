@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 09:18:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:09:53 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static	float ft_pow(float base, int exp)
 		result *= base;
 	return (result);
 }
-
-const int	Fixed::_bits = 8;
 
 Fixed::Fixed(void)
 {
@@ -62,11 +60,6 @@ Fixed &Fixed::operator=(const Fixed &fixed_copy)
 	return (*this);
 }
 
-std::ostream	&operator<<(std::ostream &out, Fixed const &fp_num)
-{
-	return (out << fp_num.toFloat());
-}
-
 int Fixed::getRawBits(void) const
 {
 	return (this->_value);
@@ -85,4 +78,9 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return (this->_value / ft_pow(2, this->_bits));
+}
+
+std::ostream	&operator<<(std::ostream &out, Fixed const &fp_num)
+{
+	return (out << fp_num.toFloat());
 }

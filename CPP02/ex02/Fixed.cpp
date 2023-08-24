@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 10:07:29 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:39:16 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static	float ft_pow(float base, int exp)
 		result *= base;
 	return (result);
 }
-
-const int	Fixed::_bits = 8;
 
 Fixed::Fixed(void)
 {

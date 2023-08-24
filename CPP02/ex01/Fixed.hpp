@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/06 09:17:27 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:03:14 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed
 {
 	private:
 		int					_value;
-		static const int	_bits;
+		static const int	_bits = 8;
 	public:
 		Fixed();
 		Fixed(const int value);
@@ -36,4 +36,5 @@ class Fixed
 };
 
 std::ostream	&operator<<(std::ostream &out, Fixed const &fp_num);
+
 #endif

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/05 10:04:53 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 09:53:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-const int	Fixed::_bits = 8;
 
 Fixed::Fixed(void)
 {
@@ -31,7 +29,7 @@ Fixed::~Fixed(void)
 	std::cout << "Destructor called\n";
 }
 
-Fixed &Fixed::operator = (const Fixed &fixed_copy)
+Fixed &Fixed::operator=(const Fixed &fixed_copy)
 {
 	std::cout << "Copy assignment operator called\n";
 	this->_value = fixed_copy.getRawBits();

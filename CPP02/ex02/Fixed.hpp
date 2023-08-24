@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:39:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 08:31:41 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:39:19 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed
 {
 	private:
 		int					_value;
-		static const int	_bits;
+		static const int	_bits = 8;
 	public:
 		Fixed();
 		Fixed(const int value);
@@ -47,9 +47,9 @@ class Fixed
 		Fixed	operator++(int dummy);
 		Fixed	operator--(void);
 		Fixed	operator--(int dummy);
-		static Fixed	&min(Fixed &n1, Fixed &n2);
+		static Fixed		&min(Fixed &n1, Fixed &n2);
 		static const Fixed	&min(Fixed const &n1, Fixed const &n2);
-		static Fixed	&max(Fixed &n1, Fixed &n2);
+		static Fixed		&max(Fixed &n1, Fixed &n2);
 		static const Fixed	&max(Fixed const &n1, Fixed const &n2);
 };
 
