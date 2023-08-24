@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:50:19 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/09 11:56:20 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:06:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Point
 		Point(const float fx, const float fy);
 		Point(const Point &copy);
 		~Point();
-		Point &operator=(Point copy);
+		Point &operator=(const Point copy);
 		Fixed	get_x(void) const;
 		Fixed	get_y(void) const;
 };
