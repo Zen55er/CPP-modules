@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:41:42 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 14:44:46 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 08:55:09 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(void)
 	{
 		//MateriaSource tests
 		/* IMateriaSource *src = new MateriaSource();
-	
+
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
@@ -68,16 +68,16 @@ int	main(void)
 	{
 		//Character tests
 		Character	link = Character("Link");
-		IMateriaSource* src = new MateriaSource();
-	
+		IMateriaSource *src = new MateriaSource();
+
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 
-		AMateria* temp;
-		AMateria* temp2;
-	
+		AMateria *temp;
+		AMateria *temp2;
+
 		temp = src->createMateria("ice");
 		link.equip(temp);
 		temp2 = src->createMateria("ice");

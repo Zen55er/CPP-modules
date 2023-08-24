@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:36:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 14:53:50 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/24 09:06:59 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,6 @@ void		Character::unequip(int idx)
 	}
 	std::cout << this->_name << " unequipped " << this->_inventory[idx]->getType() << " from slot " << idx << std::endl;
 	this->_inventory[idx] = NULL;
-	/* for (int i = 0; i < 3; i++)
-	{
-		if (!this->_inventory[i] && this->_inventory[i + 1])
-		{
-			this->_inventory[i] = this->_inventory[i + 1];
-			this->_inventory[i + 1] = NULL;
-		}
-	} */
 }
 
 void		Character::use(int idx, ICharacter &target)
@@ -114,7 +106,7 @@ void		Character::use(int idx, ICharacter &target)
 	}
 	if (!this->_inventory[idx])
 	{
-		std::cout << "There is nothing in slot " << idx << "to use\n";
+		std::cout << "There is nothing in slot " << idx << " to use\n";
 		return ;
 	}
 	this->_inventory[idx]->use(target);
