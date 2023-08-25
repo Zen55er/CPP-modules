@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:19:50 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/10 08:00:19 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/25 08:15:40 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	ClapTrap	c2("base model");
 	ClapTrap	c3(c2);
 	ClapTrap	c4;
-	
+
 	c4 = c1;
 	c1.attack(c2.get_name());
 	c2.takeDamage(6);

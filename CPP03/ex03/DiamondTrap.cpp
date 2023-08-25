@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:54:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/15 11:19:22 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/25 09:16:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ DiamondTrap::DiamondTrap()
 
 DiamondTrap::DiamondTrap(std::string name)
 {
-	std::cout << "Called DiamondTrap default constructor with name: " << name << std::endl;
+	std::cout << "Called DiamondTrap constructor with name: " << name << std::endl;
 	this->_name = name;
 	this->ClapTrap::_name = name + "_clap_name";
 	this->_hit_points = FragTrap::_hit_points;

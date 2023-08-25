@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 08:29:51 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/11 11:18:51 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/25 08:25:38 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap(const ScavTrap &copy);
 		~ScavTrap();
 		ScavTrap	&operator=(const ScavTrap &copy);
-		void 		attack(const std::string& target);
+		void 		attack(const std::string &target);
 		void 		guardGate();
 };
 

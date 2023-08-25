@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:19:50 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/14 10:33:18 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/25 08:32:37 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	ScavTrap	c2("Gary");
 	ScavTrap	c3(c2);
 	ScavTrap	c4;
-	
+
 	c4 = c1;
 	for (int i = 0; i < 6; i++)
 	{
