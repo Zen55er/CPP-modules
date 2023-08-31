@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:38:07 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/17 13:51:51 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/31 08:34:01 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 int main()
 {
 	{
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const Animal *meta = new Animal();
+		const Animal *j = new Dog();
+		const Animal *i = new Cat();
 
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
@@ -32,10 +32,10 @@ int main()
 		std::cout << std::endl;
 	}
 	{
-		const WrongAnimal* wrong_meta = new WrongAnimal();
-		const WrongAnimal* k = new WrongCat();
+		const WrongAnimal *wrong_meta = new WrongAnimal();
+		const WrongCat *k = new WrongCat();
 		
-		std::cout << k->getType() << " " << std::endl;
+		std::cout << k->getType() << std::endl;
 		wrong_meta->makeSound();
 		k->makeSound();
 		delete wrong_meta;
@@ -47,9 +47,9 @@ int main()
 		Dog j2;
 		Cat i2;
 
-		std::cout << meta2.getType() << " " << std::endl;
-		std::cout << j2.getType() << " " << std::endl;
-		std::cout << i2.getType() << " " << std::endl;
+		std::cout << meta2.getType() << std::endl;
+		std::cout << j2.getType() << std::endl;
+		std::cout << i2.getType() << std::endl;
 		meta2.makeSound();
 		i2.makeSound();
 		j2.makeSound();		

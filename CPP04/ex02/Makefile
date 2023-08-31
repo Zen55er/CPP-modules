@@ -6,12 +6,12 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/08/18 11:50:47 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/08/31 09:06:46 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= abstract
-SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRC		= main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 CC		= @c++
 CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
 

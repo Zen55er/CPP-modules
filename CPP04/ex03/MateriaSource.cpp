@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:37:45 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/23 14:14:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/31 09:52:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &copy)
 void		MateriaSource::learnMateria(AMateria *new_materia)
 {
 	int	i = 0;
-	
+
 	if (!new_materia)
 	{
 		std::cout << "Can't learn non-existent materias\n";

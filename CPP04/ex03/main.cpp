@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:41:42 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/24 08:55:09 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:13:47 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 {
 	{
 		//MateriaSource tests
-		/* IMateriaSource *src = new MateriaSource();
+		IMateriaSource *src = new MateriaSource();
 
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -63,7 +63,8 @@ int	main(void)
 		temp2 = src->createMateria("Ice");
 
 		delete src;
-		delete temp1; */
+		delete temp1;
+		std::cout << std::endl;
 	}
 	{
 		//Character tests
@@ -104,6 +105,7 @@ int	main(void)
 		zelda.use(2, link);
 		zelda.use(3, link);
 
+		delete temp;
 		delete temp2;
 		delete src;
 	}

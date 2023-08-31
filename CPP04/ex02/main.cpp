@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 14:26:09 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/18 11:56:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/31 09:10:35 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(void)
 {
 	{
 		std::cout << "Subject main\n";
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const AAnimal* j = new Dog();
+		const AAnimal* i = new Cat();
 	
 		delete j;//should not create a leak
 		delete i;
@@ -67,7 +67,7 @@ int	main(void)
 		std::cout << "\nMy main\n";
 		int		i = 0;
 		int		size = 2;
-		Animal	*playground[size];
+		AAnimal	*playground[size];
 
 		for (; i < size / 2; i++)
 			playground[i] = new Dog();
@@ -79,8 +79,8 @@ int	main(void)
 			delete playground[i];
 	}
 	/* {
-		std::cout << "\nInstantiating Animal\n";
-		Animal test1();
-		Animal test2("generic");
+		std::cout << "\nInstantiating AAnimal\n";
+		AAnimal test1();
+		AAnimal test2("generic");
 	} */
 }

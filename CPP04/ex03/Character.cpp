@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:36:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/24 09:06:59 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/08/31 09:29:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,16 @@ void		Character::equip(AMateria *m)
 		std::cout << "Non-existent materia can't be equipped\n";
 		return ;
 	}
-	if (this->_inventory[3])
+	for (; i < 4; i++)
 	{
-		std::cout << this->_name << "'s inventory is full. Can't equip " << m->getType() << std::endl;
-		return ;
+		if (!this->_inventory[i])
+			break ;
+		if (i == 3 && this->_inventory[i])
+		{
+			std::cout << this->_name << "'s inventory is full. Can't equip " << m->getType() << std::endl;
+			return ;	
+		}
 	}
-	while (this->_inventory[i] && i < 4)
-		i++;
 	this->_inventory[i] = m;
 	std::cout << this->_name << " equipped " << m->getType() << " on slot " << i << std::endl;
 }
