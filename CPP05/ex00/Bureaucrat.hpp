@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:03:14 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/07 14:59:05 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/08 09:57:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ class Bureaucrat
 		void		setGrade(int grade);
 		void		upgrade();
 		void		downgrade();
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char	*what(void) const throw();
+		};
+
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char	*what(void) const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &out, Bureaucrat const &bureaucrat);
