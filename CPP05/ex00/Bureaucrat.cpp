@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:15:02 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/08 12:45:26 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/11 09:20:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,35 @@ int	Bureaucrat::getGrade() const
 void	Bureaucrat::setGrade(int grade)
 {
 	if (grade > 150)
+	{
 		throw(GradeTooLowException());
+		return ;
+	}
 	else if (grade < 1)
+	{
 		throw(GradeTooHighException());
+		return ;		
+	}
 	this->_grade = grade;
 }
 
 void	Bureaucrat::upgrade()
 {
-	if (this->_grade < 1)
+	if (this->_grade <= 1)
+	{
 		throw(GradeTooHighException());
+		return ;
+	}
 	this->_grade--;
 }
 
 void	Bureaucrat::downgrade()
 {
-	if (this->_grade > 150)
+	if (this->_grade >= 150)
+	{
 		throw(GradeTooLowException());
+		return ;
+	}
 	this->_grade++;
 }
 
