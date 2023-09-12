@@ -6,14 +6,15 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/09/11 15:43:36 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/09/12 08:45:50 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= forms
 SRC		= main.cpp Bureaucrat.cpp Form.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
+CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98
+#-fsanitize=address,undefined
 
 all:		$(NAME)
 
