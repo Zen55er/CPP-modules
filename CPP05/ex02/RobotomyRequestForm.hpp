@@ -6,12 +6,13 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:53:39 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 10:51:57 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:06:22 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "AForm.hpp"
+#include <cstdlib>
 
 class RobotomyRequestForm : public AForm
 {
@@ -23,5 +24,5 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(const RobotomyRequestForm &copy);
 		~RobotomyRequestForm();
 		RobotomyRequestForm	&operator=(const RobotomyRequestForm &copy);
-		void				execute(Bureaucrat const &executor) const;
+		void				executor() const;
 };

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:54:33 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 10:52:01 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:06:45 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm &copy);
 		~PresidentialPardonForm();
 		PresidentialPardonForm	&operator=(const PresidentialPardonForm &copy);
-		void					execute(Bureaucrat const &executor) const;
+		void					executor() const;
 };

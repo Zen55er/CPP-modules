@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 09:49:46 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 13:50:45 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:07:12 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ void	AForm::beSigned(Bureaucrat &bureaucrat)
 	else
 		this->_signed = true;
 	return ;
+}
+
+void	AForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.executeForm(*this))
+		throw(FormFailExecutionException());
+	this->executor();
 }
 
 const char	*AForm::GradeTooLowException::what(void) const throw()

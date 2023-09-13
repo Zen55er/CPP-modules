@@ -6,43 +6,53 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:49:59 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 09:12:38 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:42:27 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int	bureau_life(std::string name, int grade, std::string name2, int grade2, int grade3)
+int	company_life(std::string name, int grade)
 {
-	Bureaucrat	desk_jockey(name, grade);
-	Form		paperwork(name2, grade2, grade3);
+	Bureaucrat				desk_jockey(name, grade);
+	ShrubberyCreationForm	ideiafix("CEO's nana's street");
+	RobotomyRequestForm		express_mandatory_surgery("Head of HR");
+	PresidentialPardonForm	get_out_of_jail_free("Investment manager");
 
-	std::cout << desk_jockey << std::endl;
-	std::cout << paperwork << std::endl;
-	paperwork.beSigned(desk_jockey);
-	desk_jockey.upgrade();
-	std::cout << desk_jockey << std::endl;
-	paperwork.beSigned(desk_jockey);
+	ideiafix.execute(desk_jockey);
+	express_mandatory_surgery.execute(desk_jockey);
+	get_out_of_jail_free.execute(desk_jockey);
+	ideiafix.beSigned(desk_jockey);
+	express_mandatory_surgery.beSigned(desk_jockey);
+	get_out_of_jail_free.beSigned(desk_jockey);
 	return (0);
 }
 
-int	error_testing(std::string name, int grade, std::string name2, int grade2, int grade3)
+int	error_testing(std::string name, int grade)
 {
 	try
 	{
-		bureau_life(name, grade, name2, grade2, grade3);
+		company_life(name, grade);
 	}
-	catch(Form::GradeTooHighException &error)
+	catch(AForm::GradeTooHighException &error)
 	{
 		std::cerr << error.what() << std::endl;
 		return (1);
 	}
-	catch(Form::GradeTooLowException &error)
+	catch(AForm::GradeTooLowException &error)
 	{
 		std::cerr << error.what() << std::endl;
 		return (1);
 	}
-	catch(Form::FormAlreadySignedException &error)
+	catch(AForm::FormAlreadySignedException &error)
+	{
+		std::cerr << error.what() << std::endl;
+		return (1);
+	}
+	catch(AForm::FormFailExecutionException &error)
 	{
 		std::cerr << error.what() << std::endl;
 		return (1);
@@ -62,18 +72,7 @@ int	error_testing(std::string name, int grade, std::string name2, int grade2, in
 
 int	main(void)
 {
-	error_testing("pencil_pusher", 74, "form1", 0, 75);
+	error_testing("pencil_pusher", 74);
 	std::cout << std::endl;
-	error_testing("pencil_pusher", 74, "form1", 151, 75);
-	std::cout << std::endl;
-	error_testing("pencil_pusher", 74, "form1", 75, 0);
-	std::cout << std::endl;
-	error_testing("pencil_pusher", 74, "form1", 75, 151);
-	std::cout << std::endl;
-	error_testing("pencil_pusher", 74, "form1", 75, 75);
-	std::cout << std::endl;
-	error_testing("pencil_pusher", 75, "form1", 75, 75);
-	std::cout << std::endl;
-	error_testing("pencil_pusher", 75, "form1", 74, 75);
 	return (0);
 }

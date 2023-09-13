@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:15:02 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 12:54:13 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:52:13 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	Bureaucrat::executeForm(AForm const &form) const
 			<< std::endl;
 		return (1);
 	}
-	return ;
+	return (0);
 }
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()

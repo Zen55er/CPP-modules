@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:54:38 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/12 12:53:44 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:06:01 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 {
 	this->_target = copy._target;
 	this->setSigned(this->isSigned());
+	return (*this);
 }
 
-void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
+void	PresidentialPardonForm::executor() const
 {
-	
+	std::cout << this->_target << "has been pardoned by Zaphod Beeblebrox\n";
+	return ;
 }
