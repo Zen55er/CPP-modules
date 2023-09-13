@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 14:49:59 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/13 11:42:27 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:26:05 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ int	company_life(std::string name, int grade)
 	RobotomyRequestForm		express_mandatory_surgery("Head of HR");
 	PresidentialPardonForm	get_out_of_jail_free("Investment manager");
 
-	ideiafix.execute(desk_jockey);
-	express_mandatory_surgery.execute(desk_jockey);
-	get_out_of_jail_free.execute(desk_jockey);
 	ideiafix.beSigned(desk_jockey);
 	express_mandatory_surgery.beSigned(desk_jockey);
 	get_out_of_jail_free.beSigned(desk_jockey);
+	std::cout << std::endl;
+	ideiafix.execute(desk_jockey);
+	std::cout << std::endl;
+	express_mandatory_surgery.execute(desk_jockey);
+	std::cout << std::endl;
+	get_out_of_jail_free.execute(desk_jockey);
 	return (0);
 }
 
@@ -73,6 +76,10 @@ int	error_testing(std::string name, int grade)
 int	main(void)
 {
 	error_testing("pencil_pusher", 74);
+	std::cout << std::endl;
+	error_testing("pencil_pusher", 10);
+	std::cout << std::endl;
+	error_testing("pencil_pusher", 1);
 	std::cout << std::endl;
 	return (0);
 }

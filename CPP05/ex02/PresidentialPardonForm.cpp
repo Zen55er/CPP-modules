@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:54:38 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/13 12:06:01 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:09:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 
 void	PresidentialPardonForm::executor() const
 {
-	std::cout << this->_target << "has been pardoned by Zaphod Beeblebrox\n";
+	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox\n";
 	return ;
 }
