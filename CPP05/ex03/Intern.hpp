@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:28:57 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/13 15:57:26 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/14 08:39:51 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Intern
 		AForm	*make_pardon(std::string target);
 		class	InvalidFormNameException : public std::exception
 		{
-			const char	*what(void) const throw();
+			public:
+				const char	*what(void) const throw();
 		};
 };

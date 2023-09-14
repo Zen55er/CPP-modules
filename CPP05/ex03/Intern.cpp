@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:13:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/13 16:26:47 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/09/14 08:55:40 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ AForm	*Intern::makeForm(std::string name, std::string target)
 		{"shrubbery creation", "robotomy request", "presidential pardon"};
 	AForm	*(Intern::*form_func[3])(std::string target) =
 		{&Intern::make_shrubbery, &Intern::make_robotomy, &Intern::make_pardon};
-	std::string			lower_name;
 
-	for (int i = 0; i < name.size(); i++)
-		lower_name[i] = tolower(name[i]);
+	for (unsigned long i = 0; i < name.length(); i++)
+		name[i] = tolower(name[i]);
 	for (int i = 0; i < 3; i++)
-		if (lower_name == forms[i])
+		if (name == forms[i])
 			return (new_form = (this->*form_func[i])(target));
 	throw(InvalidFormNameException());
 	return (0);

@@ -4,7 +4,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/CPP05/ex01/forms",
+            "program": "${workspaceFolder}/CPP05/ex03/intern",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

@@ -6,15 +6,15 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/09/13 11:47:11 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/09/14 08:54:13 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= forms
+NAME	= intern
 SRC		= main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
-		RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+		RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98
+CFLAGS	= -Wall -Wextra -Werror -Wshadow -g -std=c++98
 #-fsanitize=address,undefined
 
 all:		$(NAME)
