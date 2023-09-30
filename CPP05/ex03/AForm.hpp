@@ -19,10 +19,10 @@ class Bureaucrat;
 class AForm
 {
 	private:
-		std::string	_name;
-		bool		_signed;
-		const int	_sign_grade;
-		const int	_execute_grade;
+		const std::string	_name;
+		bool				_signed;
+		const int			_sign_grade;
+		const int			_execute_grade;
 	public:
 		AForm();
 		AForm(std::string name, int sign, int execute);

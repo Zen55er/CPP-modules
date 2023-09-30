@@ -32,7 +32,6 @@ AForm::~AForm() {}
 
 AForm &AForm::operator=(const AForm &copy)
 {
-	this->_name = copy._name;
 	this->_signed = copy._signed;
 	return (*this);
 }

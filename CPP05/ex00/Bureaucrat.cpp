@@ -57,20 +57,14 @@ void	Bureaucrat::setGrade(int grade)
 void	Bureaucrat::upgrade()
 {
 	if (this->_grade <= 1)
-	{
 		throw(GradeTooHighException());
-		return ;
-	}
 	this->_grade--;
 }
 
 void	Bureaucrat::downgrade()
 {
 	if (this->_grade >= 150)
-	{
 		throw(GradeTooLowException());
-		return ;
-	}
 	this->_grade++;
 }
 
