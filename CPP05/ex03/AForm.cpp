@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 09:49:46 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/09/13 12:07:12 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/03 10:07:05 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	AForm::beSigned(Bureaucrat &bureaucrat)
 	if (this->_signed)
 		throw(FormAlreadySignedException());
 	else if (bureaucrat.getGrade() > this->_sign_grade)	
-		throw(GradeTooLowException());
+		throw(GradeTooHighException());
 	else
 		this->_signed = true;
 	return ;
@@ -104,7 +104,7 @@ const char	*AForm::FormFailExecutionException::what(void) const throw()
 std::ostream	&operator<<(std::ostream &out, AForm const &form)
 {
 	out << "Form " << form.getName()
-		<< ", has a sign grade of " << form.getSignGrade()
+		<< " has a sign grade of " << form.getSignGrade()
 		<< " and a execution grade of " << form.getExecuteGrade()
 		<< ". It is " << (form.isSigned() ? "signed" : "unsigned");
 	return (out);

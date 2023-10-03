@@ -6,14 +6,14 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/09/07 14:57:23 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/10/03 09:27:44 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= bureaucrat
 SRC		= main.cpp Bureaucrat.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
+CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -std=c++98 -fsanitize=address,undefined
 
 all:		$(NAME)
 
