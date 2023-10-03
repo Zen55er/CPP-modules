@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/03 13:42:39 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:43:18 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ int	ScalarConverter::check_input(std::string input)
 {
 	int	type;
 	int	pseudo = pseudo_literals(input);
+	int	i = (input[0] == '+' || input[0] == '-') ? 0 : -1;
+	int	i_len = input.length();
+	int	len = (input[0] == '+' || input[0] == '-') ? i_len - 1 : i_len;
 
 	if (input.length() == 1 && (input[0] < '0' || input[0] > '9'))
 		return 1;
-	if (!test_int(input))
-		/*INT*/
-	if (pseudo > 2 || !test_float(input))
-		/*FLOAT*/
-	if ((pseudo > 0 && pseudo < 3) || !test_double(input))
-		/*DOUBLE*/
+	if (!test_int(input, i, i_len, len))
+		return 2;
+	if (pseudo > 2 || !test_float(input, i, i_len, len))
+		return 3;
+	if ((pseudo > 0 && pseudo < 3) || !test_double(input, i, i_len, len))
+		return 4;
+	return 0;
 }
 
 int	ScalarConverter::test_int(std::string input)
@@ -62,12 +66,51 @@ int	ScalarConverter::test_int(std::string input)
 
 int	ScalarConverter::test_float(std::string input)
 {
+	int	i = (input[0] == '+' || input[0] == '-') ? 0 : -1;
+	int	i_len = input.length();
+	int	len = (input[0] == '+' || input[0] == '-') ? i_len - 1 : i_len;
+	int	dot = 0;
 
+	while (++i < i_len)
+	{
+		if (!isdigit(input[i]))
+		{
+			if (input[i] == '.')
+			{
+				if (dot)
+					return 1;
+				dot = 1;
+			}
+			else if (input[i] == 'f' && i == i_len - 1)
+				break;
+			return 1;
+		}
+	}
+	return 0;
 }
 
 int	ScalarConverter::test_double(std::string input)
 {
+	int	i = (input[0] == '+' || input[0] == '-') ? 0 : -1;
+	int	i_len = input.length();
+	int	len = (input[0] == '+' || input[0] == '-') ? i_len - 1 : i_len;
+	int	dot = 0;
 
+	while (++i < i_len)
+	{
+		if (!isdigit(input[i]))
+		{
+			if (input[i] == '.')
+			{
+				if (dot)
+					return 1;
+				dot = 1;
+				continue;
+			}
+			return 1;
+		}
+	}
+	return 0;
 }
 
 int	ScalarConverter::pseudo_literals(std::string input)
