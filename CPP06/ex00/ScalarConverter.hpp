@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:43:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/03 09:24:08 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:06:20 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <limits>
 
 class  ScalarConverter
 {
@@ -27,4 +28,5 @@ class  ScalarConverter
 		static int		int_converter(std::string input);
 		static int		float_converter(std::string input);
 		static int		double_converter(std::string input);
+		static int		int_len(std::string input);
 };
