@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 12:42:44 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:59:08 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	ScalarConverter::test_float(std::string input, int i, int i_len)
 				if (dot)
 					return 1;
 				dot = 1;
+				continue;
 			}
 			else if (input[i] == 'f' && i == i_len - 1)
 				break;
