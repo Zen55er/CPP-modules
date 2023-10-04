@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 11:22:20 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 11:38:35 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int	ScalarConverter::converter(std::string input)
 	switch (type)
 	{
 		case 0:
-		{
-			std::cout << "Can't convert " << input << std::endl;
-			return printer(0, 0, 0, 0, 1);
-		}
+			return printer(input, 0, 0, 0, 0, 1);
 		case 1:
 			return print_char(input);
 		case 2:
@@ -71,7 +68,7 @@ int	ScalarConverter::check_input(std::string input)
 		return 4;
 	if (!test_double(input, i, i_len))
 		return 5;
-	if (pseudo > 0 && pseudo < 3)
+	if (pseudo >= 0 && pseudo < 3)
 		return 6;
 	return 0;
 }
@@ -144,7 +141,7 @@ int	ScalarConverter::print_char(std::string input)
 	float	f = static_cast<float>(c);
 	double	d = static_cast<double>(c);
 
-	printer(c, i, f, d, 0);
+	printer(input, c, i, f, d, 0);
 	return 0;
 }
 
@@ -157,7 +154,7 @@ int	ScalarConverter::print_int(std::string input)
 	float	f = static_cast<float>(i);
 	double	d = static_cast<double>(i);
 
-	printer(c, i, f, d, 0);
+	printer(input, c, i, f, d, 0);
 	return 0;
 }
 
@@ -168,13 +165,7 @@ int	ScalarConverter::int_tester(std::string input)
 
 	if (len > 10 || check > std::numeric_limits<int>::max()
 		|| check < std::numeric_limits<int>::min())
-	{
-		std::cout << "char: " << "Impossible\n";
-		std::cout << "int: " << "Impossible\n";
-		std::cout << "float: " << "Impossible\n";
-		std::cout << "double: " << "Impossible\n";
-		return 1;
-	}
+		return printer(input, 0, 0, 0, 0, 1);
 	return 0;
 }
 
@@ -190,9 +181,11 @@ int	ScalarConverter::print_float(std::string input, int flag)
 			case 3:
 				std::cout << "float: " << "inff\n";
 				std::cout << "double: " << "inf\n";
+				break;
 			case 4:
 				std::cout << "float: " << "-inff\n";
 				std::cout << "double: " << "-inf\n";
+				break;
 			case 5:
 				std::cout << "float: " << "nanf\n";
 				std::cout << "double: " << "nan\n";
@@ -203,18 +196,13 @@ int	ScalarConverter::print_float(std::string input, int flag)
 	float	f = strtof(input.c_str(), NULL);
 
 	if (f == HUGE_VALF || f == -HUGE_VALF)
-	{
-		//OVERFLOW CASE
-		//INCLUDE POSSIBLE DOUBLE CONVERSION?
-		printer(0, 0, 0, 0, 1);
-		return 1;
-	}
+		return printer(input, 0, 0, 0, 0, 1);
 	
 	char	c = static_cast<char>(f);
 	int		i = static_cast<int>(f);
 	double	d = static_cast<double>(f);
 
-	printer(c, i, f, d, 0);
+	printer(input, c, i, f, d, 0);
 	return 0;
 }
 
@@ -230,9 +218,11 @@ int	ScalarConverter::print_double(std::string input, int flag)
 			case 0:
 				std::cout << "float: " << "inff\n";
 				std::cout << "double: " << "inf\n";
+				break;
 			case 1:
 				std::cout << "float: " << "-inff\n";
 				std::cout << "double: " << "-inf\n";
+				break;
 			case 2:
 				std::cout << "float: " << "nanf\n";
 				std::cout << "double: " << "nan\n";
@@ -243,17 +233,13 @@ int	ScalarConverter::print_double(std::string input, int flag)
 	double	d = strtod(input.c_str(), NULL);
 
 	if (d == HUGE_VAL || d == -HUGE_VAL)
-	{
-		//OVERFLOW CASE
-		printer(0, 0, 0, 0, 1);
-		return 1;
-	}
+		return printer(input, 0, 0, 0, 0, 1);
 
 	char	c = static_cast<char>(d);
 	int		i = static_cast<int>(d);
 	float	f = static_cast<float>(d);
 
-	printer(c, i, f, d, 0);
+	printer(input, c, i, f, d, 0);
 	return 0;
 }
 
@@ -270,10 +256,11 @@ int	ScalarConverter::int_len(std::string input)
 	return counter;
 }
 
-int	ScalarConverter::printer(char c, int i, float f, double d, int flag)
+int	ScalarConverter::printer(std::string input, char c, int i, float f, double d, int flag)
 {
 	if (flag)
 	{
+		std::cout << "Can't convert " << input << std::endl;
 		std::cout << "char: " << "Impossible\n";
 		std::cout << "int: " << "Impossible\n";
 		std::cout << "float: " << "Impossible\n";

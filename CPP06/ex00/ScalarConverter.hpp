@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:43:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 10:25:37 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 11:36:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ class  ScalarConverter
 		static int	print_double(std::string input, int flag);
 		static int	int_tester(std::string input);
 		static int	int_len(std::string input);
-		static int	printer(char c, int i, float f, double d, int flag);
+		static int	printer(std::string input, char c, int i, float f, double d, int flag);
 };
