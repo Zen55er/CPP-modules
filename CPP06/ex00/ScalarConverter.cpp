@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 10:09:19 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 11:22:20 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,31 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
 	return (*this);
 }
 
-void	ScalarConverter::converter(std::string input)
+int	ScalarConverter::converter(std::string input)
 {
 	int	type = check_input(input);
 
 	switch (type)
 	{
 		case 0:
-			printer(0, 0, 0, 0, 1);
+		{
+			std::cout << "Can't convert " << input << std::endl;
+			return printer(0, 0, 0, 0, 1);
+		}
 		case 1:
-			print_char(input);
+			return print_char(input);
 		case 2:
-			print_int(input);
+			return print_int(input);
 		case 3:
-			print_float(input, 0);
+			return print_float(input, 0);
 		case 4:
-			print_float(input, 1);
+			return print_float(input, 1);
 		case 5:
-			print_double(input, 0);
+			return print_double(input, 0);
 		case 6:
-			print_double(input, 1);
+			return print_double(input, 1);
 	}
+	return 1;
 }
 
 int	ScalarConverter::check_input(std::string input)
@@ -56,24 +60,23 @@ int	ScalarConverter::check_input(std::string input)
 	int	pseudo = pseudo_literals(input);
 	int	i = (input[0] == '+' || input[0] == '-') ? 0 : -1;
 	int	i_len = input.length();
-	int	len = (input[0] == '+' || input[0] == '-') ? i_len - 1 : i_len;
 
 	if (input.length() == 1 && (input[0] < '0' || input[0] > '9'))
 		return 1;
-	if (!test_int(input, i, i_len, len))
+	if (!test_int(input, i, i_len))
 		return 2;
-	if (!test_float(input, i, i_len, len))
+	if (!test_float(input, i, i_len))
 		return 3;
 	if (pseudo > 2)
 		return 4;
-	if (!test_double(input, i, i_len, len))
+	if (!test_double(input, i, i_len))
 		return 5;
 	if (pseudo > 0 && pseudo < 3)
 		return 6;
 	return 0;
 }
 
-int	ScalarConverter::test_int(std::string input, int i, int i_len, int len)
+int	ScalarConverter::test_int(std::string input, int i, int i_len)
 {
 	while (++i < i_len)
 		if (!isdigit(input[i]))
@@ -81,7 +84,7 @@ int	ScalarConverter::test_int(std::string input, int i, int i_len, int len)
 	return 0;
 }
 
-int	ScalarConverter::test_float(std::string input, int i, int i_len, int len)
+int	ScalarConverter::test_float(std::string input, int i, int i_len)
 {
 	int	dot = 0;
 
@@ -103,7 +106,7 @@ int	ScalarConverter::test_float(std::string input, int i, int i_len, int len)
 	return 0;
 }
 
-int	ScalarConverter::test_double(std::string input, int i, int i_len, int len)
+int	ScalarConverter::test_double(std::string input, int i, int i_len)
 {
 	int	dot = 0;
 
@@ -142,6 +145,7 @@ int	ScalarConverter::print_char(std::string input)
 	double	d = static_cast<double>(c);
 
 	printer(c, i, f, d, 0);
+	return 0;
 }
 
 int	ScalarConverter::print_int(std::string input)
@@ -154,15 +158,16 @@ int	ScalarConverter::print_int(std::string input)
 	double	d = static_cast<double>(i);
 
 	printer(c, i, f, d, 0);
+	return 0;
 }
 
 int	ScalarConverter::int_tester(std::string input)
 {
-	int			flag = 0;
 	int			len = int_len(input);
-	long long	check = std::atoll(input.c_str());
+	long		check = atol(input.c_str());
 
-	if (len > 10 || check > INT32_MAX || check < INT32_MIN)
+	if (len > 10 || check > std::numeric_limits<int>::max()
+		|| check < std::numeric_limits<int>::min())
 	{
 		std::cout << "char: " << "Impossible\n";
 		std::cout << "int: " << "Impossible\n";
@@ -177,11 +182,21 @@ int	ScalarConverter::print_float(std::string input, int flag)
 {
 	if (flag)
 	{
-		//PSEUDO CASE
+		int pseudo = pseudo_literals(input);
 		std::cout << "char: " << "Impossible\n";
 		std::cout << "int: " << "Impossible\n";
-		std::cout << "float: " << "Impossible\n";
-		std::cout << "double: " << "Impossible\n";
+		switch (pseudo)
+		{
+			case 3:
+				std::cout << "float: " << "inff\n";
+				std::cout << "double: " << "inf\n";
+			case 4:
+				std::cout << "float: " << "-inff\n";
+				std::cout << "double: " << "-inf\n";
+			case 5:
+				std::cout << "float: " << "nanf\n";
+				std::cout << "double: " << "nan\n";
+		}
 		return 0;
 	}
 
@@ -200,13 +215,28 @@ int	ScalarConverter::print_float(std::string input, int flag)
 	double	d = static_cast<double>(f);
 
 	printer(c, i, f, d, 0);
+	return 0;
 }
 
 int	ScalarConverter::print_double(std::string input, int flag)
 {
 	if (flag)
 	{
-		//PSEUDO CASE
+		int pseudo = pseudo_literals(input);
+		std::cout << "char: " << "Impossible\n";
+		std::cout << "int: " << "Impossible\n";
+		switch (pseudo)
+		{
+			case 0:
+				std::cout << "float: " << "inff\n";
+				std::cout << "double: " << "inf\n";
+			case 1:
+				std::cout << "float: " << "-inff\n";
+				std::cout << "double: " << "-inf\n";
+			case 2:
+				std::cout << "float: " << "nanf\n";
+				std::cout << "double: " << "nan\n";
+		}
 		return 0;
 	}
 
@@ -224,13 +254,14 @@ int	ScalarConverter::print_double(std::string input, int flag)
 	float	f = static_cast<float>(d);
 
 	printer(c, i, f, d, 0);
+	return 0;
 }
 
 int	ScalarConverter::int_len(std::string input)
 {
 	int	counter = 0;
 
-	for (int i = 0; i < input.length(); i++)
+	for (unsigned int i = 0; i < input.length(); i++)
 	{
 		if (!i && (input[i] == '+' || input[i] == '-'))
 			continue;
@@ -239,7 +270,7 @@ int	ScalarConverter::int_len(std::string input)
 	return counter;
 }
 
-void	ScalarConverter::printer(char c, int i, float f, double d, int flag)
+int	ScalarConverter::printer(char c, int i, float f, double d, int flag)
 {
 	if (flag)
 	{
@@ -247,7 +278,7 @@ void	ScalarConverter::printer(char c, int i, float f, double d, int flag)
 		std::cout << "int: " << "Impossible\n";
 		std::cout << "float: " << "Impossible\n";
 		std::cout << "double: " << "Impossible\n";
-		return;
+		return 1;
 	}
 	if (!isprint(c))
 		std::cout << "char: Non displayable\n";
@@ -256,4 +287,5 @@ void	ScalarConverter::printer(char c, int i, float f, double d, int flag)
 	std::cout << "int: " << i << std::endl;
 	std::cout << "float: " << f << std::endl;
 	std::cout << "double: " << d << std::endl;
+	return 0;
 }
