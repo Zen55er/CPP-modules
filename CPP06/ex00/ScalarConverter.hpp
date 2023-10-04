@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:43:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/03 14:44:15 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 09:46:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string>
 #include <cstring>
 #include <limits>
+#include <cmath>
 
 class  ScalarConverter
 {
@@ -29,9 +30,11 @@ class  ScalarConverter
 		static int	test_float(std::string input, int i, int i_len, int len);
 		static int	test_double(std::string input, int i, int i_len, int len);
 		static int	pseudo_literals(std::string input);
-		static int	char_converter(std::string input);
-		static int	int_converter(std::string input);
-		static int	float_converter(std::string input);
-		static int	double_converter(std::string input);
+		static int	print_char(std::string input);
+		static int	print_int(std::string input);
+		static int	print_float(std::string input, int flag);
+		static int	print_double(std::string input, int flag);
+		static int	int_tester(std::string input);
 		static int	int_len(std::string input);
+		static void	printer(char c, int i, float f, double d, int flag);
 };
