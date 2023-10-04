@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:43:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 11:36:34 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:22:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cstring>
 #include <limits>
 #include <cmath>
+#include <iomanip>
 
 class  ScalarConverter
 {

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 11:38:35 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:42:44 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,11 @@ int	ScalarConverter::printer(std::string input, char c, int i, float f, double d
 	else
 		std::cout << "char: " << c << std::endl;
 	std::cout << "int: " << i << std::endl;
-	std::cout << "float: " << f << std::endl;
+	if (f == i)
+		std::cout << "float: " << std::fixed << std::setprecision(1)
+		<< f << "f" << std::endl;
+	else
+		std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
 	return 0;
 }
