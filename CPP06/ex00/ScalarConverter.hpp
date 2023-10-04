@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 09:43:01 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 12:22:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 14:47:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 
 class  ScalarConverter
 {
-	public:
+	private:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &copy);
+
+	public:
 		~ScalarConverter();
 		ScalarConverter &operator=(const ScalarConverter &copy);
 		static int	converter(std::string input);
@@ -38,4 +40,10 @@ class  ScalarConverter
 		static int	int_tester(std::string input);
 		static int	int_len(std::string input);
 		static int	printer(std::string input, char c, int i, float f, double d, int flag);
+		
+		class ConversionOverflowException : public std::exception
+		{
+			public:
+				virtual const char	*what(void) const throw();
+		};
 };

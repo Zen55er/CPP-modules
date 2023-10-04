@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 12:59:08 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:28:23 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,32 @@ int	ScalarConverter::converter(std::string input)
 {
 	int	type = check_input(input);
 
-	switch (type)
+	try
 	{
-		case 0:
-			return printer(input, 0, 0, 0, 0, 1);
-		case 1:
-			return print_char(input);
-		case 2:
-			return print_int(input);
-		case 3:
-			return print_float(input, 0);
-		case 4:
-			return print_float(input, 1);
-		case 5:
-			return print_double(input, 0);
-		case 6:
-			return print_double(input, 1);
+		switch (type)
+		{
+			case 0:
+				return printer(input, 0, 0, 0, 0, 1);
+			case 1:
+				return print_char(input);
+			case 2:
+				return print_int(input);
+			case 3:
+				return print_float(input, 0);
+			case 4:
+				return print_float(input, 1);
+			case 5:
+				return print_double(input, 0);
+			case 6:
+				return print_double(input, 1);
+		}
 	}
-	return 1;
+	catch (ScalarConverter::ConversionOverflowException &error)
+	{
+		std::cerr << error.what() << std::endl;
+		return (1);
+	}
+	return (0);
 }
 
 int	ScalarConverter::check_input(std::string input)
@@ -148,8 +156,7 @@ int	ScalarConverter::print_char(std::string input)
 
 int	ScalarConverter::print_int(std::string input)
 {
-	if (int_tester(input))
-		return 1;
+	int_tester(input);
 	int		i = atoi(input.c_str());
 	char	c = static_cast<char>(i);
 	float	f = static_cast<float>(i);
@@ -166,7 +173,7 @@ int	ScalarConverter::int_tester(std::string input)
 
 	if (len > 10 || check > std::numeric_limits<int>::max()
 		|| check < std::numeric_limits<int>::min())
-		return printer(input, 0, 0, 0, 0, 1);
+		throw(ConversionOverflowException());
 	return 0;
 }
 
@@ -197,7 +204,8 @@ int	ScalarConverter::print_float(std::string input, int flag)
 	float	f = strtof(input.c_str(), NULL);
 
 	if (f == HUGE_VALF || f == -HUGE_VALF)
-		return printer(input, 0, 0, 0, 0, 1);
+		throw(ConversionOverflowException());
+	int_tester(input);
 	
 	char	c = static_cast<char>(f);
 	int		i = static_cast<int>(f);
@@ -234,7 +242,8 @@ int	ScalarConverter::print_double(std::string input, int flag)
 	double	d = strtod(input.c_str(), NULL);
 
 	if (d == HUGE_VAL || d == -HUGE_VAL)
-		return printer(input, 0, 0, 0, 0, 1);
+		throw(ConversionOverflowException());
+	int_tester(input);
 
 	char	c = static_cast<char>(d);
 	int		i = static_cast<int>(d);
@@ -252,6 +261,8 @@ int	ScalarConverter::int_len(std::string input)
 	{
 		if (!i && (input[i] == '+' || input[i] == '-'))
 			continue;
+		if (!isdigit(input[i]))
+			break;
 		counter++;
 	}
 	return counter;
@@ -280,4 +291,9 @@ int	ScalarConverter::printer(std::string input, char c, int i, float f, double d
 		std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
 	return 0;
+}
+
+const char	*ScalarConverter::ConversionOverflowException::what(void) const throw()
+{
+	return ("Attempted conversion will overflow\n");
 }
