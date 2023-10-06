@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:32:31 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/04 15:28:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/06 07:58:20 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,9 @@ int	ScalarConverter::print_float(std::string input, int flag)
 
 	float	f = strtof(input.c_str(), NULL);
 
-	if (f == HUGE_VALF || f == -HUGE_VALF)
+	if (f == HUGE_VALF || f == -HUGE_VALF
+		|| f >= float(std::numeric_limits<int>::max())
+		|| f <= float(std::numeric_limits<int>::min()))
 		throw(ConversionOverflowException());
 	int_tester(input);
 	
@@ -241,7 +243,11 @@ int	ScalarConverter::print_double(std::string input, int flag)
 
 	double	d = strtod(input.c_str(), NULL);
 
-	if (d == HUGE_VAL || d == -HUGE_VAL)
+	if (d == HUGE_VAL || d == -HUGE_VAL
+		|| d >= std::numeric_limits<int>::max()
+		|| d <= std::numeric_limits<int>::min()
+		|| d >= std::numeric_limits<float>::max()
+		|| d <= std::numeric_limits<float>::min())
 		throw(ConversionOverflowException());
 	int_tester(input);
 
