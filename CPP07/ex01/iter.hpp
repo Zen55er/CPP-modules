@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:22:20 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/06 12:56:44 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:00:30 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	func2(T &position)
 }
 
 template <typename T>
-void	iter(const T *array, int len, void (*function)(const T &))
+void	iter(const T *array, unsigned int len, void (*function)(const T &))
 {
-	for (int i = 0; i < len; i++)
+	for (unsigned int i = 0; i < len; i++)
 		function(array[i]);
 }
 
 template <typename T>
-void	iter(T *array, int len, void (*function)(T &))
+void	iter(T *array, unsigned int len, void (*function)(T &))
 {
-	for (int i = 0; i < len; i++)
+	for (unsigned int i = 0; i < len; i++)
 		function(array[i]);
 }

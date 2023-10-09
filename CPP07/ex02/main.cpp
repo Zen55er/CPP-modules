@@ -6,11 +6,17 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 08:44:02 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/09 09:32:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:22:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+
+typedef struct Data
+{
+	std::string	text;
+	int			val;
+} Data;
 
 int	main(void)
 {
@@ -79,6 +85,22 @@ int	main(void)
 		std::cout << std::endl;
 		for (unsigned int i = 0; i < arr4.size(); i++)
 			std::cout << "arr4 pos " << i << " is: " << arr4[i] << std::endl;
+		
+		std::cout << "\nTESTING WITH DATA ARRAY\n";
+		Array<Data>	arr6(3);
+
+		arr6[0].text = "ABC";
+		arr6[0].val = 123;
+		arr6[1].text = "DEF";
+		arr6[1].val = 465;
+		arr6[2].text = "GHI";
+		arr6[2].val = 789;
+		std::cout << "arr6 size is: " << arr6.size() << std::endl;
+		for (unsigned int i = 0; i < arr6.size(); i++)
+		{
+			std::cout << "arr6 pos " << i << " text is: " << arr6[i].text << std::endl;
+			std::cout << "arr6 pos " << i << " val is: " << arr6[i].val << std::endl;
+		}
 	}
 	catch(const std::exception& e)
 	{
