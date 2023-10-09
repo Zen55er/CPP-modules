@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:33:51 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/09 09:29:26 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:50:43 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ Array<T>::Array(unsigned int n): _array(new T[n]), _len(n) {}
 template <typename T>
 Array<T>::Array(const Array &copy): _array(new T[copy._len]), _len(copy._len)
 {
-	this->_array = new T[copy._len];
-	for (int i = 0; i < _len; i++)
+	for (unsigned int i = 0; i < _len; i++)
 		_array[i] = copy._array[i];
 }
 

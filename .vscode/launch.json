@@ -4,7 +4,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/CPP06/ex00/convert",
+            "program": "${workspaceFolder}/CPP07/ex02/array",
             "args": ["2147483647f"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
