@@ -6,11 +6,11 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/10/06 12:21:47 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/10/09 09:32:26 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= iter
+NAME	= array
 SRC		= main.cpp
 CC		= @c++
 CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -std=c++98 -fsanitize=address,undefined

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:14:54 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/06 15:09:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/09 09:01:25 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class Array
 	public:
 		Array();
 		Array(unsigned int n);
-		Array(const T &copy);
+		Array(const Array &copy);
 		~Array();
-		Array &operator=(const T &copy);
+		Array &operator=(const Array &copy);
 		T &operator[](unsigned int index);
-		unsigned int	size(void);
+		unsigned int	size(void) const;
 };
 
 #include "Array.tpp"

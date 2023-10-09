@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:33:51 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/06 15:17:20 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/09 09:29:26 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ template <typename T>
 Array<T>::Array(unsigned int n): _array(new T[n]), _len(n) {}
 
 template <typename T>
-Array<T>::Array(const T &copy): _array(new T[copy._len]), _len(copy._len)
+Array<T>::Array(const Array &copy): _array(new T[copy._len]), _len(copy._len)
 {
+	this->_array = new T[copy._len];
 	for (int i = 0; i < _len; i++)
 		_array[i] = copy._array[i];
 }
@@ -32,11 +33,12 @@ Array<T>::~Array()
 }
 
 template <typename T>
-Array &Array<T>::operator=(const T &copy)
+Array<T> &Array<T>::operator=(const Array &copy)
 {
-	delete[] _array
+	delete[] _array;
 	_len = copy._len;
-	for (int i = 0; i < _len; i++)
+	this->_array = new T[_len];
+	for (unsigned int i = 0; i < _len; i++)
 		_array[i] = copy._array[i];
 	return *this;
 }
@@ -44,13 +46,13 @@ Array &Array<T>::operator=(const T &copy)
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
-	if (index > _len - 1)
-		throw(std::exception())
+	if (!_len || index > _len - 1)
+		throw(std::exception());
 	return _array[index];
 }
 
 template <typename T>
-unsigned int	Array<T>::size(void)
+unsigned int	Array<T>::size(void) const
 {
 	return _len;
 }
