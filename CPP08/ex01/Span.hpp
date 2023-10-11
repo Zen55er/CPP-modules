@@ -6,13 +6,14 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:06:13 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/10 14:59:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:53:23 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <cstdlib>
+#include <limits>
 #include <numeric>
 #include <vector>
 #include <iterator>
@@ -33,8 +34,9 @@ class Span
 		Span 	&operator=(const Span &copy);
 		void	addNumber(int num);
 		void	addRange(VEC_INT::iterator begin, VEC_INT::iterator end);
-		int		shortestSpan() const;
-		int		longestSpan() const;
+		long	shortestSpan() const;
+		long	longestSpan() const;
+		int		get_size() const;
 
 		class	MaxCapacityException : public std::exception
 		{
