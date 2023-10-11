@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:07:59 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/11 13:19:24 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:08:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iterator>
 
 template <typename T>
-class MutantStack : public std::stack<T, std::deque<T> >
+class MutantStack : public std::stack<T>
 {
 	public:
 		MutantStack();
