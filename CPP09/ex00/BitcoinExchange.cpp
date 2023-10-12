@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/12 12:58:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:25:17 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,30 @@ BitcoinExchange::~BitcoinExchange() {}
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy)
 {
 	_table = copy._table;
+	return *this;
+}
+
+void	BitcoinExchange::process(std::string input)
+{
+	try
+	{
+		fetch_db("data.csv");
+		file_checker(input);
+	}
+	catch(const std::runtime_error &error)
+	{
+		std::cerr << error.what() << '\n';
+	}
+	
 }
 
 void	BitcoinExchange::fetch_db(std::string path)
 {
-	std::ifstream	input(path.c_str(), std::ifstream::in);
+	std::ifstream	input(path.c_str());
 	std::string		line;
 
 	if (!input.is_open())
-		throw(std::runtime_error("Error: could not open file.\n"));
+		throw(std::runtime_error("Error: could not open file."));
 	getline(input, line);
 	while (getline(input, line))
 	{
@@ -46,36 +61,23 @@ void	BitcoinExchange::fetch_db(std::string path)
 	input.close();
 }
 
-void	BitcoinExchange::input_checker(std::string path)
-{
-	try
-	{
-		file_checker(path);
-	}
-	catch (const std::runtime_error &error)
-	{
-		std::cerr << error.what();
-		return;
-	}
-}
-
-int	BitcoinExchange::file_checker(std::string path)
+void	BitcoinExchange::file_checker(std::string path)
 {
 	std::ifstream	input(path.c_str(), std::ifstream::in);
 	std::string		line;
 
 	if (!input.is_open())
-		throw(std::runtime_error("Error: could not open file.\n"));
+		throw(std::runtime_error("Error: could not open file."));
 	if (input.peek() == std::ifstream::traits_type::eof())
 	{
 		input.close();
-		throw(std::runtime_error("Error: file is empty.\n"));
+		throw(std::runtime_error("Error: file is empty."));
 	}
 	getline(input, line);
 	if (line != "date | value")
 	{
 		input.close();
-		throw(std::runtime_error("Error: bad header.\n"));
+		throw(std::runtime_error("Error: bad header."));
 	}
 	while (getline(input, line))
 		line_checker(line);
@@ -98,14 +100,15 @@ int	BitcoinExchange::line_checker(std::string line)
 	float	f_value = value_checker(value);
 	if (f_value == -1)
 		return 1;
-	//DO STUFF HERE???
+	display_info(date, f_value);
+	return 0;
 }
 
 int	BitcoinExchange::date_checker(std::string date)
 {
 	struct tm	time;
 
-	if (!strptime(date.c_str(), "%Y-%m-%d", &time));
+	if (!strptime(date.c_str(), "%Y-%m-%d", &time))
 	{
 		std::cout << "Error: wrong date or wrong date format => "
 			<< date << std::endl;
@@ -168,4 +171,38 @@ float	BitcoinExchange::value_checker(std::string value)
 		return -1;
 	}
 	return static_cast<float>(test);
+}
+
+void	BitcoinExchange::display_info(std::string date, float value)
+{
+	ITERATOR	it;
+
+	it = _table.find(date);
+	// std::cout << "Date: " << it->first << ", value: " << it->second << std::endl;
+	if (it == _table.end())
+		it = find_closest(date);
+	if (it == _table.end())
+	{
+		std::cout << "Error: could not find closest date to " << date
+			<< std::endl;
+		return;
+	}
+	std::cout << it->first << " => " << it->second << " = "
+		<< it->second * value << std::endl;
+	return;
+}
+
+ITERATOR	BitcoinExchange::find_closest(std::string date)
+{
+	R_ITERATOR	rbegin = _table.rbegin();
+	R_ITERATOR	rend = _table.rend();
+
+	// std::cout << "Match " << date << ", Date: " << rbegin->first << ", value: " << rbegin->second << std::endl;
+	// std::cout << "Comparison: " << date << " : " << rbegin->first << ", Result: " << rbegin->first.compare(date) << std::endl;
+	for (; rbegin != rend && rbegin->first.compare(date) > 0; rbegin++)
+	{
+		// std::cout << "Comparison: " << date << " : " << rbegin->first << "Result: " << rbegin->first.compare(date) << std::endl;
+		continue;
+	}
+	return rbegin.base();
 }

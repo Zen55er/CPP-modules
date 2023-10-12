@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:22:47 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/11 16:29:20 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:08:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,8 @@ int	main(int ac, char **av)
 		std::cout << "Error: could not open file.\n";
 		return 1;
 	}
+
+	BitcoinExchange	btc;
+	btc.process(av[1]);
+	return (0);
 }
