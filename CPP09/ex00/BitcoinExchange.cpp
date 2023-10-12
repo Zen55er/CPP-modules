@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/12 12:07:35 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:58:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,18 @@ int	BitcoinExchange::file_checker(std::string path)
 		throw(std::runtime_error("Error: bad header.\n"));
 	}
 	while (getline(input, line))
-	{
-		if (line_checker(line))
-		{
-			input.close();
-			throw(std::runtime_error("Error: [" + line + "] bad formatting.\n"));			
-		}
-	}
+		line_checker(line);
 }
 
 int	BitcoinExchange::line_checker(std::string line)
 {
 	if (line.empty() || line.length() < 14 || line[10] != ' '
 		|| line[11] != '|' || line[12] != ' ')
+	{
+		std::cout << "Error: line is empty or has wrong format => "
+			<< line << std::endl;
 		return 1;
+	}
 
 	std::string date = line.substr(0, 10);
 	std::string value = line.substr(13, line.length() - 13);
@@ -108,7 +106,11 @@ int	BitcoinExchange::date_checker(std::string date)
 	struct tm	time;
 
 	if (!strptime(date.c_str(), "%Y-%m-%d", &time));
+	{
+		std::cout << "Error: wrong date or wrong date format => "
+			<< date << std::endl;
 		return 1;
+	}
 	return 0;
 }
 
@@ -117,8 +119,16 @@ float	BitcoinExchange::value_checker(std::string value)
 	int	len = value.length();
 	int	dot = 0;
 
-	if (len > 4 || value[0] == '-')
+	if (len > 5)
+	{
+		std::cout << "Error: number is too large => " << value << std::endl;
 		return -1;
+	}
+	else if (value[0] == '-')
+	{
+		std::cout << "Error: number is negative => " << value << std::endl;
+		return -1;
+	}
 	for (int i = 0; i < len; i++)
 	{
 		if (!isdigit(value[i]))
@@ -126,11 +136,19 @@ float	BitcoinExchange::value_checker(std::string value)
 			if (value[i] == '.')
 			{
 				if (dot)
+				{
+					std::cout << "Error: not a number or bad number format => "
+						<< value << std::endl;
 					return -1;
+				}
 				dot = 1;
 			}
 			else if (value[i] == 'f' && i < len - 1)
+			{
+				std::cout << "Error: not a number or bad number format => "
+					<< value << std::endl;
 				return -1;
+			}
 		}
 	}
 
@@ -139,8 +157,15 @@ float	BitcoinExchange::value_checker(std::string value)
 	if (test > std::numeric_limits<int>::max()
 		|| test < std::numeric_limits<int>::min()
 		|| test > std::numeric_limits<float>::max()
-		|| test < std::numeric_limits<float>::min()
-		|| test > 1000)
+		|| test < std::numeric_limits<float>::min())
+	{
+		std::cout << "Error: number will overflow => " << value << std::endl;
 		return -1;
+	}
+	else if (test > 1000)
+	{
+		std::cout << "Error: number is too large => " << value << std::endl;
+		return -1;
+	}
 	return static_cast<float>(test);
 }
