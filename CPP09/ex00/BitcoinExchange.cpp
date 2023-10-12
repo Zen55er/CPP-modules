@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/12 16:25:17 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:36:50 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,6 @@ void	BitcoinExchange::display_info(std::string date, float value)
 	ITERATOR	it;
 
 	it = _table.find(date);
-	// std::cout << "Date: " << it->first << ", value: " << it->second << std::endl;
 	if (it == _table.end())
 		it = find_closest(date);
 	if (it == _table.end())
@@ -187,7 +186,7 @@ void	BitcoinExchange::display_info(std::string date, float value)
 			<< std::endl;
 		return;
 	}
-	std::cout << it->first << " => " << it->second << " = "
+	std::cout << date << " => " << value << " = "
 		<< it->second * value << std::endl;
 	return;
 }
@@ -197,12 +196,7 @@ ITERATOR	BitcoinExchange::find_closest(std::string date)
 	R_ITERATOR	rbegin = _table.rbegin();
 	R_ITERATOR	rend = _table.rend();
 
-	// std::cout << "Match " << date << ", Date: " << rbegin->first << ", value: " << rbegin->second << std::endl;
-	// std::cout << "Comparison: " << date << " : " << rbegin->first << ", Result: " << rbegin->first.compare(date) << std::endl;
 	for (; rbegin != rend && rbegin->first.compare(date) > 0; rbegin++)
-	{
-		// std::cout << "Comparison: " << date << " : " << rbegin->first << "Result: " << rbegin->first.compare(date) << std::endl;
 		continue;
-	}
 	return rbegin.base();
 }
