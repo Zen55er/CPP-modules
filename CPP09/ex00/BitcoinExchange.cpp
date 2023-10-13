@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/12 16:36:50 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/13 09:36:05 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	BitcoinExchange::file_checker(std::string path)
 int	BitcoinExchange::line_checker(std::string line)
 {
 	if (line.empty() || line.length() < 14 || line[10] != ' '
-		|| line[11] != '|' || line[12] != ' ')
+		|| line[11] != '|' || line[12] != ' ' || line[13] == ' ')
 	{
 		std::cout << "Error: line is empty or has wrong format => "
 			<< line << std::endl;
@@ -124,7 +124,8 @@ float	BitcoinExchange::value_checker(std::string value)
 
 	if (len > 5)
 	{
-		std::cout << "Error: number is too large => " << value << std::endl;
+		std::cout << "Error: number is too large or has wrong format => "
+			<< value << std::endl;
 		return -1;
 	}
 	else if (value[0] == '-')
@@ -198,5 +199,7 @@ ITERATOR	BitcoinExchange::find_closest(std::string date)
 
 	for (; rbegin != rend && rbegin->first.compare(date) > 0; rbegin++)
 		continue;
-	return rbegin.base();
+	if (rbegin == rend)
+		return _table.end();
+	return --rbegin.base();
 }

@@ -5,7 +5,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/CPP09/ex00/btc",
-            "args": ["./inputs/subject.txt"],
+            "args": ["./inputs/good.txt"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
