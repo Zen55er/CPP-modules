@@ -6,16 +6,16 @@
 #    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/10/13 09:36:41 by gacorrei         ###   ########.fr        #
+#    Updated: 2023/10/13 12:33:16 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= btc
 SRC		= main.cpp BitcoinExchange.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -std=c++98 -fsanitize=address,undefined
+# CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -std=c++98 -fsanitize=address,undefined
 # FOR DEBUGGER TO SHOW STD::STRING
-# CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -fno-limit-debug-info -std=c++98 -fsanitize=address,undefined
+CFLAGS	= -Wall -Wextra -Werror -pedantic -Wshadow -g -fno-limit-debug-info -std=c++98 -fsanitize=address,undefined
 
 all:		$(NAME)
 

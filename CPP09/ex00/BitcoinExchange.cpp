@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/13 09:36:05 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:46:41 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,7 @@ float	BitcoinExchange::value_checker(std::string value)
 	int	len = value.length();
 	int	dot = 0;
 
-	if (len > 5)
-	{
-		std::cout << "Error: number is too large or has wrong format => "
-			<< value << std::endl;
-		return -1;
-	}
-	else if (value[0] == '-')
+	if (value[0] == '-')
 	{
 		std::cout << "Error: number is negative => " << value << std::endl;
 		return -1;
@@ -158,10 +152,15 @@ float	BitcoinExchange::value_checker(std::string value)
 
 	double	test = strtod(value.c_str(), NULL);
 
+	if (test > 1000)
+	{
+		std::cout << "Error: number is too large => " << value << std::endl;
+		return -1;
+	}
 	if (test > std::numeric_limits<int>::max()
 		|| test < std::numeric_limits<int>::min()
 		|| test > std::numeric_limits<float>::max()
-		|| test < std::numeric_limits<float>::min())
+		|| test < -std::numeric_limits<float>::max())
 	{
 		std::cout << "Error: number will overflow => " << value << std::endl;
 		return -1;
@@ -187,8 +186,11 @@ void	BitcoinExchange::display_info(std::string date, float value)
 			<< std::endl;
 		return;
 	}
-	std::cout << date << " => " << value << " = "
-		<< it->second * value << std::endl;
+	std::cout << date << " => ";
+	special_print(value);
+	std::cout << " = ";
+	special_print(it->second * value);
+	std::cout << std::endl;
 	return;
 }
 
@@ -202,4 +204,16 @@ ITERATOR	BitcoinExchange::find_closest(std::string date)
 	if (rbegin == rend)
 		return _table.end();
 	return --rbegin.base();
+}
+
+void	BitcoinExchange::special_print(float value)
+{
+	if (value != static_cast<int>(value))
+	{
+		std::cout << std::fixed << std::setprecision(2);
+		std::cout << value;		
+		std::cout.unsetf(std::ios_base::floatfield);
+	}
+	else
+		std::cout << static_cast<int>(value);
 }

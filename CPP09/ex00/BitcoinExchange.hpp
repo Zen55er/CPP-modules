@@ -6,12 +6,13 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:54:56 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/12 15:11:17 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:36:31 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include <limits>
 #include <fstream>
 #include <sstream>
@@ -38,4 +39,5 @@ class BitcoinExchange
 		float			value_checker(std::string value);
 		void			display_info(std::string date, float value);
 		ITERATOR		find_closest(std::string date);
+		void			special_print(float value);
 };
