@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/13 12:46:41 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:55:42 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,7 @@ float	BitcoinExchange::value_checker(std::string value)
 		std::cout << "Error: number is too large => " << value << std::endl;
 		return -1;
 	}
-	if (test > std::numeric_limits<int>::max()
-		|| test < std::numeric_limits<int>::min()
-		|| test > std::numeric_limits<float>::max()
+	if (test > std::numeric_limits<float>::max()
 		|| test < -std::numeric_limits<float>::max())
 	{
 		std::cout << "Error: number will overflow => " << value << std::endl;
