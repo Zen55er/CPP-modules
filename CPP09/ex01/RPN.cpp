@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:10:30 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/13 15:51:41 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/16 08:54:06 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	RPN::parse_input(std::string input)
 		case seven:
 		case eight:
 		case nine:
-			_stack.push(c);
+			_stack.push(c - '0');
 			break;
 		case plus:
 		case minus:
@@ -68,6 +68,7 @@ void	RPN::parse_input(std::string input)
 	}
 	if (_stack.size() > 1)
 		throw(std::runtime_error("Error: more than 1 number in stack"));
+	std::cout << _stack.top() << std::endl;
 }
 
 void	RPN::process_input(std::string input)
@@ -87,26 +88,25 @@ void	RPN::do_op(char op)
 	if (_stack.size() < 2)
 		throw(std::runtime_error("Not enough numbers to perform operations"));
 
-	enum	operators {plus = '+', minus = '-', multi = '*', divi = '/'};
 	int	first;
 	int	second;
 
-	first = _stack.top();
-	_stack.pop();
 	second = _stack.top();
+	_stack.pop();
+	first = _stack.top();
 	_stack.pop();
 	switch (op)
 	{
-		case plus:
+		case '+':
 			_stack.push(first + second);
 			break;
-		case minus:
+		case '-':
 			_stack.push(first - second);
 			break;
-		case multi:
+		case '*':
 			_stack.push(first * second);
 			break;
-		case divi:
+		case '/':
 			_stack.push(first / second);
 			break;
 	}
