@@ -19,18 +19,21 @@
 #include <list>
 #include <algorithm>
 
+#define V_PAIR std::vector<std::pair<int,int> >
+#define L_PAIR std::list<std::pair<int,int> >
 #define V_IT std::vector<std::pair<int,int> >::iterator
 #define L_IT std::list<std::pair<int,int> >::iterator
+#define I_PAIR	std::pair<int,int>
 
 class PmergeMe
 {
 	private:
-		std::vector<std::pair<int,int> >	_vec;
-		std::list<std::pair<int,int> >		_lst;
-		std::vector<int>					_v_largest;
-		std::list<int>						_l_largest;
-		bool								_odd;
-		static int64_t						jacob_diff[];
+		V_PAIR				_vec;
+		L_PAIR				_lst;
+		std::vector<int>	_v_largest;
+		std::list<int>		_l_largest;
+		bool				_odd;
+		static int64_t		jacob_diff[];
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe &copy);
@@ -40,8 +43,7 @@ class PmergeMe
 		void		sorter(char **input);
 		void		v_processor(char **input);
 		void		l_processor(char **input);
-		void		v_sort_pairs();
-		void		l_sort_pairs();
-		void		v_prep_largest(V_IT begin);
-		void		l_prep_largest(L_IT begin);
+		V_PAIR		v_sort_pairs(V_PAIR pairs);
+		L_PAIR		l_sort_pairs(L_PAIR pairs);
+		static bool cmp_pairs(const I_PAIR &a, const I_PAIR &b);
 };

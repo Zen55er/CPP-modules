@@ -36,13 +36,14 @@ PmergeMe::PmergeMe(const PmergeMe &copy)
 
 PmergeMe::~PmergeMe() {}
 
-PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
+//ADD NEW MEMBERS
+/* PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
 {
 	_vec = copy._vec;
 	_lst = copy._lst;
 	_odd = copy._odd;
 	return *this;
-}
+} */
 
 void	PmergeMe::sorter(char **input)
 {
@@ -60,42 +61,44 @@ void	PmergeMe::sorter(char **input)
 
 void	PmergeMe::v_processor(char **input)
 {
-	std::pair<int, int> temp;
+	std::pair<int, int>	temp;
+	V_PAIR				pairs;
 
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
 		{
 			temp = std::make_pair(atoi(input[i - 1]), atoi(input[i]));
-			_vec.push_back(temp);
+			pairs.push_back(temp);
 		}
 		if (!input[i + 1] && _odd)
 		{
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
-			_vec.push_back(temp);
+			pairs.push_back(temp);
 		}
 	}
-	v_sort_pairs();
+	v_sort_pairs(pairs);
 }
 
 void	PmergeMe::l_processor(char **input)
 {
 	std::pair<int, int> temp;
+	L_PAIR				pairs;
 
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
 		{
 			temp = std::make_pair(atoi(input[i - 1]), atoi(input[i]));
-			_lst.push_back(temp);
+			pairs.push_back(temp);
 		}
 		if (!input[i + 1] && _odd)
 		{
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
-			_lst.push_back(temp);
+			pairs.push_back(temp);
 		}
 	}
-	l_sort_pairs();
+	l_sort_pairs(pairs);
 }
 
 int		PmergeMe::input_validation(char **input)
@@ -126,34 +129,56 @@ int		PmergeMe::input_validation(char **input)
 	return 0;
 }
 
-void	PmergeMe::v_sort_pairs()
+V_PAIR	PmergeMe::v_sort_pairs(V_PAIR pairs)
 {
-	V_IT	v_begin = _vec.begin();
-	V_IT	v_end = _vec.end();
+	int	size = pairs.size();
 
-	for (; v_begin != v_end; v_begin++)
-		if (v_begin->first > v_begin->second)
-			std::swap(v_begin->first, v_begin->second);
-	v_prep_largest(_vec.begin());
+	if (size < 2)
+		return pairs;
+	size /= 2;
+
+	V_PAIR	l_half(pairs.begin(), pairs.begin() + size);
+	V_PAIR	r_half(pairs.begin() + size, _odd ? --pairs.end() : pairs.end());
+
+	v_sort_pairs(l_half);
+	v_sort_pairs(r_half);
+
+	V_PAIR	merged;
+
+	std::merge(l_half.begin(), l_half.end(), r_half.begin(), r_half.end(),
+		std::back_inserter(merged), cmp_pairs);
+	return merged;
 }
 
-void	PmergeMe::l_sort_pairs()
+L_PAIR	PmergeMe::l_sort_pairs(L_PAIR pairs)
 {
-	L_IT	l_begin = _lst.begin();
-	L_IT	l_end = _lst.end();
+	int	size = pairs.size();
 
-	for (; l_begin != l_end; l_begin++)
-		if (l_begin->first > l_begin->second)
-			std::swap(l_begin->first, l_begin->second);
-	l_prep_largest(_lst.begin());
+	if (size < 2)
+		return pairs;
+	size /= 2;
+
+	L_PAIR	l_half;
+	L_PAIR	r_half;
+	L_IT	it = pairs.begin();
+	std::advance(it, size);
+	std::copy(pairs.begin(), it, std::back_inserter(l_half));
+	std::copy(it, _odd ? --pairs.end() : pairs.end(),
+		std::back_inserter(l_half));
+
+	l_sort_pairs(l_half);
+	l_sort_pairs(r_half);
+
+	L_PAIR	merged;
+
+	std::merge(l_half.begin(), l_half.end(), r_half.begin(), r_half.end(),
+		std::back_inserter(merged), cmp_pairs);
+	return merged;
 }
 
-void	PmergeMe::v_prep_largest(V_IT begin)
+bool	PmergeMe::cmp_pairs(const I_PAIR &a, const I_PAIR &b)
 {
-
-}
-
-void	PmergeMe::l_prep_largest(L_IT begin)
-{
-
+	if (a.second < b.second)
+		return true;
+	return false;
 }
