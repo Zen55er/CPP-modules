@@ -77,7 +77,10 @@ void	PmergeMe::v_processor(char **input)
 			pairs.push_back(temp);
 		}
 	}
-	v_sort_pairs(pairs);
+	pairs = v_sort_pairs(pairs);
+
+	std::vector<int>	chain = v_copy_big(pairs);
+	v_copy_small(pairs, chain);
 }
 
 void	PmergeMe::l_processor(char **input)
@@ -98,7 +101,10 @@ void	PmergeMe::l_processor(char **input)
 			pairs.push_back(temp);
 		}
 	}
-	l_sort_pairs(pairs);
+	pairs = l_sort_pairs(pairs);
+
+	std::list<int>	chain = l_copy_big(pairs);
+	l_copy_small(pairs, chain);
 }
 
 int		PmergeMe::input_validation(char **input)
@@ -181,4 +187,36 @@ bool	PmergeMe::cmp_pairs(const I_PAIR &a, const I_PAIR &b)
 	if (a.second < b.second)
 		return true;
 	return false;
+}
+
+std::vector<int>	PmergeMe::v_copy_big(V_PAIR pairs)
+{
+	V_IT				begin = pairs.begin();
+	V_IT				end = _odd ? --pairs.end() : pairs.end();
+	std::vector<int>	chain;
+
+	for (; begin != end; begin++)
+		chain.push_back(begin->second);
+	return chain;
+}
+
+std::list<int>		PmergeMe::l_copy_big(L_PAIR pairs)
+{
+	L_IT				begin = pairs.begin();
+	L_IT				end = _odd ? --pairs.end() : pairs.end();
+	std::list<int>	chain;
+
+	for (; begin != end; begin++)
+		chain.push_back(begin->second);
+	return chain;
+}
+
+void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
+{
+	
+}
+
+void		PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
+{
+	
 }
