@@ -28,10 +28,6 @@
 class PmergeMe
 {
 	private:
-		V_PAIR				_vec;
-		L_PAIR				_lst;
-		std::vector<int>	_v_largest;
-		std::list<int>		_l_largest;
 		bool				_odd;
 		static int64_t		jacob_diff[];
 	public:
@@ -49,5 +45,7 @@ class PmergeMe
 		std::list<int>		l_copy_big(L_PAIR pairs);
 		void				v_copy_small(V_PAIR pairs, std::vector<int> chain);
 		void				l_copy_small(L_PAIR pairs, std::list<int> chain);
+		void				v_insert(std::vector<int> chain, int val);
+		void				l_insert(std::list<int> chain, int val);
 		static bool			cmp_pairs(const I_PAIR &a, const I_PAIR &b);
 };

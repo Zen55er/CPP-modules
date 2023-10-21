@@ -36,14 +36,11 @@ PmergeMe::PmergeMe(const PmergeMe &copy)
 
 PmergeMe::~PmergeMe() {}
 
-//ADD NEW MEMBERS
-/* PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
+PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
 {
-	_vec = copy._vec;
-	_lst = copy._lst;
 	_odd = copy._odd;
 	return *this;
-} */
+}
 
 void	PmergeMe::sorter(char **input)
 {
@@ -195,6 +192,7 @@ std::vector<int>	PmergeMe::v_copy_big(V_PAIR pairs)
 	V_IT				end = _odd ? --pairs.end() : pairs.end();
 	std::vector<int>	chain;
 
+	chain.push_back(begin->first);
 	for (; begin != end; begin++)
 		chain.push_back(begin->second);
 	return chain;
@@ -206,6 +204,7 @@ std::list<int>		PmergeMe::l_copy_big(L_PAIR pairs)
 	L_IT				end = _odd ? --pairs.end() : pairs.end();
 	std::list<int>	chain;
 
+	chain.push_back(begin->first);
 	for (; begin != end; begin++)
 		chain.push_back(begin->second);
 	return chain;
@@ -213,10 +212,62 @@ std::list<int>		PmergeMe::l_copy_big(L_PAIR pairs)
 
 void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
 {
-	
+	V_IT	begin = pairs.begin() + 1;
+	V_IT	end = pairs.end();
+	V_IT	section_end;
+	bool	check = false;
+
+	for (int i = 0; begin != end; i++)
+	{
+		section_end = jacob_diff[i] <= std::distance(begin, end) ?
+			begin + jacob_diff[i] : end;
+		if (section_end == end)
+			check = true;
+		while (section_end != begin)
+		{
+			v_insert(chain, section_end->first);
+			section_end--;
+		}
+		if (check)
+			break;
+	}
 }
 
-void		PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
+void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
 {
-	
+	L_IT	begin = pairs.begin();
+	L_IT	end = pairs.end();
+	L_IT	section_end;
+	bool	check = false;
+
+	std::advance(begin, 1);
+	for (int i = 0; begin != end; i++)
+	{
+		if (jacob_diff[i] <= std::distance(begin, end))
+		{
+			section_end = begin;
+			std::advance(section_end, jacob_diff[i]);
+		}
+		else
+			section_end = end;
+		if (section_end == end)
+			check = true;
+		while (section_end != begin)
+		{
+			l_insert(chain, section_end->first);
+			section_end--;
+		}
+		if (check)
+			break;
+	}
+}
+
+void	PmergeMe::v_insert(std::vector<int> chain, int val)
+{
+
+}
+
+void	PmergeMe::l_insert(std::list<int> chain, int val)
+{
+
 }
