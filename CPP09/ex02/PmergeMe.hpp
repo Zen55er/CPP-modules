@@ -45,7 +45,7 @@ class PmergeMe
 		std::list<int>		l_copy_big(L_PAIR pairs);
 		void				v_copy_small(V_PAIR pairs, std::vector<int> chain);
 		void				l_copy_small(L_PAIR pairs, std::list<int> chain);
-		void				v_insert(std::vector<int> chain, int val);
-		void				l_insert(std::list<int> chain, int val);
+		void				v_insert(std::vector<int> chain, int val, int n);
+		void				l_insert(std::list<int> chain, int val, int n);
 		static bool			cmp_pairs(const I_PAIR &a, const I_PAIR &b);
 };

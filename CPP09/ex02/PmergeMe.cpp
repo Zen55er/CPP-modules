@@ -225,7 +225,8 @@ void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
 			check = true;
 		while (section_end != begin)
 		{
-			v_insert(chain, section_end->first);
+			v_insert(chain, section_end->first,
+				std::distance(pairs.begin(), section_end));
 			section_end--;
 		}
 		if (check)
@@ -254,7 +255,8 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
 			check = true;
 		while (section_end != begin)
 		{
-			l_insert(chain, section_end->first);
+			l_insert(chain, section_end->first,
+				std::distance(pairs.begin(), section_end));
 			section_end--;
 		}
 		if (check)
@@ -262,12 +264,19 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
 	}
 }
 
-void	PmergeMe::v_insert(std::vector<int> chain, int val)
+void	PmergeMe::v_insert(std::vector<int> chain, int val, int n)
 {
+	std::vector<int>::iterator	begin = chain.begin();
+	std::vector<int>::iterator	max_check = chain.begin() + n;
 
+	chain.insert(std::lower_bound(begin, max_check, val), val);
 }
 
-void	PmergeMe::l_insert(std::list<int> chain, int val)
+void	PmergeMe::l_insert(std::list<int> chain, int val, int n)
 {
+	std::list<int>::iterator	begin = chain.begin();
+	std::list<int>::iterator	max_check = chain.begin();
 
+	std::advance(max_check, n);
+	chain.insert(std::lower_bound(begin, max_check, val), val);
 }
