@@ -77,7 +77,16 @@ void	PmergeMe::v_processor(char **input)
 	pairs = v_sort_pairs(pairs);
 
 	std::vector<int>	chain = v_copy_big(pairs);
+
 	v_copy_small(pairs, chain);
+
+	std::vector<int>::iterator begin = chain.begin();
+	std::vector<int>::iterator end = chain.end();
+
+	std::cout << "Sorted with vector: ";
+	for (; begin != end; begin++)
+		std::cout << *begin;
+	std::cout << std::endl;
 }
 
 void	PmergeMe::l_processor(char **input)
@@ -101,7 +110,16 @@ void	PmergeMe::l_processor(char **input)
 	pairs = l_sort_pairs(pairs);
 
 	std::list<int>	chain = l_copy_big(pairs);
+
 	l_copy_small(pairs, chain);
+
+	std::list<int>::iterator begin = chain.begin();
+	std::list<int>::iterator end = chain.end();
+
+	std::cout << "Sorted with list: ";
+	for (; begin != end; begin++)
+		std::cout << *begin;
+	std::cout << std::endl;
 }
 
 int		PmergeMe::input_validation(char **input)
