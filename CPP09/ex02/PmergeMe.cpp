@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 12:37:58 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:07:43 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int		PmergeMe::input_validation(char **input)
 				throw(std::runtime_error("Error: use ONLY positive ints"));
 		test = strtoul(input[i], NULL, 0);
 		if ((!test && static_cast<std::string>(input[i]).compare("0"))
-			|| test < 0 || test > std::numeric_limits<int>::max())
+			|| test <= 0 || test > std::numeric_limits<int>::max())
 			throw(std::runtime_error("Error: use ONLY positive ints"));
 	}
 	if (i % 2)
@@ -256,7 +256,7 @@ void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> *chain)
 	V_IT	section_end;
 	bool	check = false;
 
-	for (int i = 0; begin != end; i++)
+	for (int i = 0; begin <= end; i++)
 	{
 		section_end = jacob_diff[i] <= std::distance(begin, end) ?
 			begin + jacob_diff[i] : end;
