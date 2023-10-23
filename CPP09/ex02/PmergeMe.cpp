@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/16 14:32:11 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:41:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,35 @@ void	PmergeMe::v_processor(char **input)
 {
 	std::pair<int, int>	temp;
 	V_PAIR				pairs;
+	int					max;
+	int					min;
 
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
 		{
-			temp = std::make_pair(atoi(input[i - 1]), atoi(input[i]));
+			max = std::max(atoi(input[i - 1]), atoi(input[i]));
+			min = std::min(atoi(input[i - 1]), atoi(input[i]));
+			temp = std::make_pair(min, max);
 			pairs.push_back(temp);
 		}
 		if (!input[i + 1] && _odd)
-		{
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
-			pairs.push_back(temp);
-		}
 	}
 	pairs = v_sort_pairs(pairs);
+	if (_odd)
+		pairs.push_back(temp);
 
 	std::vector<int>	chain = v_copy_big(pairs);
 
-	v_copy_small(pairs, chain);
+	v_copy_small(pairs, &chain);
 
 	std::vector<int>::iterator begin = chain.begin();
 	std::vector<int>::iterator end = chain.end();
 
 	std::cout << "Sorted with vector: ";
 	for (; begin != end; begin++)
-		std::cout << *begin;
+		std::cout << *begin << " ";
 	std::cout << std::endl;
 }
 
@@ -93,32 +96,35 @@ void	PmergeMe::l_processor(char **input)
 {
 	std::pair<int, int> temp;
 	L_PAIR				pairs;
+	int					max;
+	int					min;
 
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
 		{
-			temp = std::make_pair(atoi(input[i - 1]), atoi(input[i]));
+			max = std::max(atoi(input[i - 1]), atoi(input[i]));
+			min = std::min(atoi(input[i - 1]), atoi(input[i]));
+			temp = std::make_pair(min, max);
 			pairs.push_back(temp);
 		}
 		if (!input[i + 1] && _odd)
-		{
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
-			pairs.push_back(temp);
-		}
 	}
 	pairs = l_sort_pairs(pairs);
+	if (_odd)
+		pairs.push_back(temp);
 
 	std::list<int>	chain = l_copy_big(pairs);
 
-	l_copy_small(pairs, chain);
+	l_copy_small(pairs, &chain);
 
 	std::list<int>::iterator begin = chain.begin();
 	std::list<int>::iterator end = chain.end();
 
 	std::cout << "Sorted with list: ";
 	for (; begin != end; begin++)
-		std::cout << *begin;
+		std::cout << *begin << " ";
 	std::cout << std::endl;
 }
 
@@ -141,7 +147,7 @@ int		PmergeMe::input_validation(char **input)
 			|| test < 0 || test > std::numeric_limits<int>::max())
 			throw(std::runtime_error("Error: use ONLY positive ints"));
 	}
-	if (!(i % 2))
+	if (i % 2)
 		_odd = true;
 	std::cout << "Before: ";
 	for (i = 0; input[i]; i++)
@@ -159,7 +165,7 @@ V_PAIR	PmergeMe::v_sort_pairs(V_PAIR pairs)
 	size /= 2;
 
 	V_PAIR	l_half(pairs.begin(), pairs.begin() + size);
-	V_PAIR	r_half(pairs.begin() + size, _odd ? --pairs.end() : pairs.end());
+	V_PAIR	r_half(pairs.begin() + size, pairs.end());
 
 	v_sort_pairs(l_half);
 	v_sort_pairs(r_half);
@@ -184,8 +190,7 @@ L_PAIR	PmergeMe::l_sort_pairs(L_PAIR pairs)
 	L_IT	it = pairs.begin();
 	std::advance(it, size);
 	std::copy(pairs.begin(), it, std::back_inserter(l_half));
-	std::copy(it, _odd ? --pairs.end() : pairs.end(),
-		std::back_inserter(l_half));
+	std::copy(it, pairs.end(), std::back_inserter(r_half));
 
 	l_sort_pairs(l_half);
 	l_sort_pairs(r_half);
@@ -228,10 +233,10 @@ std::list<int>		PmergeMe::l_copy_big(L_PAIR pairs)
 	return chain;
 }
 
-void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
+void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> *chain)
 {
 	V_IT	begin = pairs.begin() + 1;
-	V_IT	end = pairs.end();
+	V_IT	end = _odd ? pairs.end() - 1 : pairs.end();
 	V_IT	section_end;
 	bool	check = false;
 
@@ -241,10 +246,10 @@ void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
 			begin + jacob_diff[i] : end;
 		if (section_end == end)
 			check = true;
-		while (section_end != begin)
+		while (section_end >= begin)
 		{
-			v_insert(chain, section_end->first,
-				std::distance(pairs.begin(), section_end));
+			chain->insert(std::lower_bound(chain->begin(), chain->end(),
+				section_end->first), section_end->first);
 			section_end--;
 		}
 		if (check)
@@ -252,14 +257,18 @@ void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> chain)
 	}
 }
 
-void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
+void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> *chain)
 {
 	L_IT	begin = pairs.begin();
 	L_IT	end = pairs.end();
+
+	std::advance(begin, 1);
+	if (_odd)
+		std::advance(end, -1);
+
 	L_IT	section_end;
 	bool	check = false;
 
-	std::advance(begin, 1);
 	for (int i = 0; begin != end; i++)
 	{
 		if (jacob_diff[i] <= std::distance(begin, end))
@@ -268,33 +277,20 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> chain)
 			std::advance(section_end, jacob_diff[i]);
 		}
 		else
+		{
 			section_end = end;
-		if (section_end == end)
 			check = true;
+		}
 		while (section_end != begin)
 		{
-			l_insert(chain, section_end->first,
-				std::distance(pairs.begin(), section_end));
+			chain->insert(std::lower_bound(chain->begin(), chain->end(),
+				section_end->first), section_end->first);
 			section_end--;
+			if (section_end == begin)
+				chain->insert(std::lower_bound(chain->begin(), chain->end(),
+					section_end->first), section_end->first);
 		}
 		if (check)
 			break;
 	}
-}
-
-void	PmergeMe::v_insert(std::vector<int> chain, int val, int n)
-{
-	std::vector<int>::iterator	begin = chain.begin();
-	std::vector<int>::iterator	max_check = chain.begin() + n;
-
-	chain.insert(std::lower_bound(begin, max_check, val), val);
-}
-
-void	PmergeMe::l_insert(std::list<int> chain, int val, int n)
-{
-	std::list<int>::iterator	begin = chain.begin();
-	std::list<int>::iterator	max_check = chain.begin();
-
-	std::advance(max_check, n);
-	chain.insert(std::lower_bound(begin, max_check, val), val);
 }
