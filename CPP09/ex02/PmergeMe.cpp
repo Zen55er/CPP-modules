@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 11:29:21 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:37:58 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int64_t	PmergeMe::jacob_diff[] =
     1537228672809129216u, 3074457345618258432u, 6148914691236516864u
 };
 
-PmergeMe::PmergeMe(): _odd(false) {}
+PmergeMe::PmergeMe()
+	: _odd(false), _elements(0), _start_time(0), _v_time(0), _l_time(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &copy)
 {
@@ -39,6 +40,9 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
 {
 	_odd = copy._odd;
+	_elements = copy._elements;
+	_v_time = copy._v_time;
+	_l_time = copy._l_time;
 	return *this;
 }
 
@@ -49,6 +53,7 @@ void	PmergeMe::sorter(char **input)
 		input_validation(input);
 		v_processor(input);
 		l_processor(input);
+		final_print();
 	}
 	catch(const std::runtime_error &error)
 	{
@@ -58,11 +63,13 @@ void	PmergeMe::sorter(char **input)
 
 void	PmergeMe::v_processor(char **input)
 {
+	std::clock_t		end_sim;
 	std::pair<int, int>	temp;
 	V_PAIR				pairs;
 	int					max;
 	int					min;
 
+	_start_time = std::clock();
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
@@ -82,11 +89,13 @@ void	PmergeMe::v_processor(char **input)
 	std::vector<int>	chain = v_copy_big(pairs);
 
 	v_copy_small(pairs, &chain);
+	end_sim = std::clock();
+	_v_time = static_cast<double>(end_sim - _v_time) / CLOCKS_PER_SEC * 1000;
 
 	std::vector<int>::iterator begin = chain.begin();
 	std::vector<int>::iterator end = chain.end();
 
-	std::cout << "Sorted with vector: ";
+	std::cout << "After:\t";
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
 	std::cout << std::endl;
@@ -95,11 +104,13 @@ void	PmergeMe::v_processor(char **input)
 
 void	PmergeMe::l_processor(char **input)
 {
+	std::clock_t		end_sim;
 	std::pair<int, int> temp;
 	L_PAIR				pairs;
 	int					max;
 	int					min;
 
+	_start_time = std::clock();
 	for (int i = 0; input[i]; i++)
 	{
 		if (i % 2)
@@ -119,14 +130,16 @@ void	PmergeMe::l_processor(char **input)
 	std::list<int>	chain = l_copy_big(pairs);
 
 	l_copy_small(pairs, &chain);
+	end_sim = std::clock();
+	_l_time = static_cast<double>(end_sim - _l_time) / CLOCKS_PER_SEC * 1000;
 
-	std::list<int>::iterator begin = chain.begin();
+	/* std::list<int>::iterator begin = chain.begin();
 	std::list<int>::iterator end = chain.end();
 
 	std::cout << "Sorted with list: ";
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
-	std::cout << std::endl;
+	std::cout << std::endl; */
 	// l_check_sorted(chain);
 }
 
@@ -151,7 +164,8 @@ int		PmergeMe::input_validation(char **input)
 	}
 	if (i % 2)
 		_odd = true;
-	std::cout << "Before: ";
+	_elements = i;
+	std::cout << "Before:\t";
 	for (i = 0; input[i]; i++)
 		std::cout << input[i] << " ";
 	std::cout << std::endl;
@@ -333,3 +347,10 @@ void	PmergeMe::l_check_sorted(std::list<int> final)
 	std::cout << "SORTED\n";
 }
 
+void	PmergeMe::final_print()
+{
+	std::cout << "Time to process a range of " << _elements
+		<< " elements with std::vector : " << _v_time << " ms\n";
+	std::cout << "Time to process a range of " << _elements
+		<< " elements with std::list : " << _l_time << " ms\n";
+}

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 11:18:31 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:32:30 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <sstream>
 #include <limits>
+#include <ctime>
 #include <vector>
 #include <utility>
 #include <list>
@@ -29,7 +30,11 @@ class PmergeMe
 {
 	private:
 		bool				_odd;
+		int					_elements;
 		static int64_t		jacob_diff[];
+		std::clock_t		_start_time;
+		double				_v_time;
+		double				_l_time;
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe &copy);
@@ -48,4 +53,5 @@ class PmergeMe
 		static bool			cmp_pairs(const I_PAIR &a, const I_PAIR &b);
 		void				v_check_sorted(std::vector<int> final);
 		void				l_check_sorted(std::list<int> final);
+		void				final_print();
 };
