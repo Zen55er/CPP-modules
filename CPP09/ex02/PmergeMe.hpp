@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 10:32:58 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:18:31 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ class PmergeMe
 		void				v_copy_small(V_PAIR pairs, std::vector<int> *chain);
 		void				l_copy_small(L_PAIR pairs, std::list<int> *chain);
 		static bool			cmp_pairs(const I_PAIR &a, const I_PAIR &b);
+		void				v_check_sorted(std::vector<int> final);
+		void				l_check_sorted(std::list<int> final);
 };

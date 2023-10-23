@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 11:04:08 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:29:21 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	PmergeMe::v_processor(char **input)
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
 	std::cout << std::endl;
+	// v_check_sorted(chain);
 }
 
 void	PmergeMe::l_processor(char **input)
@@ -126,6 +127,7 @@ void	PmergeMe::l_processor(char **input)
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
 	std::cout << std::endl;
+	// l_check_sorted(chain);
 }
 
 int		PmergeMe::input_validation(char **input)
@@ -293,3 +295,41 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> *chain)
 			break;
 	}
 }
+
+void	PmergeMe::v_check_sorted(std::vector<int> final)
+{
+	std::vector<int>::iterator	begin = ++final.begin();
+	std::vector<int>::iterator	end = final.end();
+
+	for (; begin != end; begin++)
+	{
+		if (*begin < *(begin - 1))
+		{
+			std::cout << "NOT SORTED\n";
+			return;
+		}
+	}
+	std::cout << "SORTED\n";
+}
+
+void	PmergeMe::l_check_sorted(std::list<int> final)
+{
+	std::list<int>::iterator	begin = final.begin();
+	std::list<int>::iterator	end = final.end();
+	std::list<int>::iterator	temp;
+
+	std::advance(begin, 1);
+	while (begin != end)
+	{
+		temp = begin;
+		std::advance(temp, -1);
+		if (*begin < *temp)
+		{
+			std::cout << "NOT SORTED\n";
+			return;
+		}
+		std::advance(begin, 1);
+	}
+	std::cout << "SORTED\n";
+}
+
