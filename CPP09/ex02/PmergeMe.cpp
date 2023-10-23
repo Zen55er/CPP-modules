@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 10:41:46 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:04:08 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,8 @@ V_PAIR	PmergeMe::v_sort_pairs(V_PAIR pairs)
 	V_PAIR	l_half(pairs.begin(), pairs.begin() + size);
 	V_PAIR	r_half(pairs.begin() + size, pairs.end());
 
-	v_sort_pairs(l_half);
-	v_sort_pairs(r_half);
+	l_half = v_sort_pairs(l_half);
+	r_half = v_sort_pairs(r_half);
 
 	V_PAIR	merged;
 
@@ -192,8 +192,8 @@ L_PAIR	PmergeMe::l_sort_pairs(L_PAIR pairs)
 	std::copy(pairs.begin(), it, std::back_inserter(l_half));
 	std::copy(it, pairs.end(), std::back_inserter(r_half));
 
-	l_sort_pairs(l_half);
-	l_sort_pairs(r_half);
+	l_half = l_sort_pairs(l_half);
+	r_half = l_sort_pairs(r_half);
 
 	L_PAIR	merged;
 
@@ -236,7 +236,7 @@ std::list<int>		PmergeMe::l_copy_big(L_PAIR pairs)
 void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> *chain)
 {
 	V_IT	begin = pairs.begin() + 1;
-	V_IT	end = _odd ? pairs.end() - 1 : pairs.end();
+	V_IT	end = pairs.end() - 1;
 	V_IT	section_end;
 	bool	check = false;
 
@@ -263,8 +263,7 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> *chain)
 	L_IT	end = pairs.end();
 
 	std::advance(begin, 1);
-	if (_odd)
-		std::advance(end, -1);
+	std::advance(end, -1);
 
 	L_IT	section_end;
 	bool	check = false;
