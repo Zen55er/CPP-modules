@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:08:30 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/13 15:22:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:37:10 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class RPN
 		RPN(const RPN &copy);
 		~RPN();
 		RPN 	&operator=(const RPN &copy);
+		void	check_input(std::string input);
 		void	parse_input(std::string input);
 		void	process_input(std::string input);
 		void	do_op(char op);

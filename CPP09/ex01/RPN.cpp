@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:10:30 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/16 08:54:06 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:43:57 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ RPN &RPN::operator=(const RPN &copy)
 {
 	this->_stack = copy._stack;
 	return *this;
+}
+
+void	RPN::check_input(std::string input)
+{
+	std::stringstream	in(input);
+	std::string			str;
+
+	while (in >> str)
+		if (str.size() > 1)
+			throw(std::runtime_error("Error: use numbers between 0 and 9"));
 }
 
 void	RPN::parse_input(std::string input)
@@ -75,6 +85,7 @@ void	RPN::process_input(std::string input)
 {
 	try
 	{
+		check_input(input);
 		parse_input(input);
 	}
 	catch(const std::runtime_error &error)
@@ -107,6 +118,8 @@ void	RPN::do_op(char op)
 			_stack.push(first * second);
 			break;
 		case '/':
+			if (second == 0)
+				throw(std::runtime_error("Division by 0!!!"));
 			_stack.push(first / second);
 			break;
 	}
