@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:57:05 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/13 14:55:42 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:15:29 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,44 @@ int	BitcoinExchange::line_checker(std::string line)
 int	BitcoinExchange::date_checker(std::string date)
 {
 	struct tm	time;
+	int			year;
+	std::string	month;
+	int			day;
 
-	if (!strptime(date.c_str(), "%Y-%m-%d", &time))
+	if (date[4] != '-' || date[7] != '-' || !isdigit(date[0])
+		|| !isdigit(date[1]) || !isdigit(date[2]) || !isdigit(date[3])
+		|| !isdigit(date[5]) || !isdigit(date[6]) || !isdigit(date[8])
+		|| !isdigit(date[9]) || date[10]
+		|| !strptime(date.c_str(), "%Y-%m-%d", &time))
+	{
+		std::cout << "Error: wrong date or wrong date format => "
+			<< date << std::endl;
+		return 1;
+	}
+	year = atoi(date.substr(0, 4).c_str());
+	month = date.substr(5, 2);
+	day = atoi(date.substr(8, 2).c_str());
+	if ((!leap_check(year) && month == "02" && day > 28)
+		|| ((month == "04" || month == "06" || month == "09" || month == "11")
+		&& day > 30))
 	{
 		std::cout << "Error: wrong date or wrong date format => "
 			<< date << std::endl;
 		return 1;
 	}
 	return 0;
+}
+
+bool	BitcoinExchange::leap_check(int year)
+{
+	if (year % 4)
+		return false;
+	else if (year % 100)
+		return true;
+	else if (year % 400)
+		return false;
+	else
+		return true;
 }
 
 float	BitcoinExchange::value_checker(std::string value)
@@ -142,6 +172,12 @@ float	BitcoinExchange::value_checker(std::string value)
 				dot = 1;
 			}
 			else if (value[i] == 'f' && i < len - 1)
+			{
+				std::cout << "Error: not a number or bad number format => "
+					<< value << std::endl;
+				return -1;
+			}
+			else
 			{
 				std::cout << "Error: not a number or bad number format => "
 					<< value << std::endl;
