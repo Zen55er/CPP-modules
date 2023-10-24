@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/23 14:07:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:45:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,13 @@ void	PmergeMe::l_processor(char **input)
 	end_sim = std::clock();
 	_l_time = static_cast<double>(end_sim - _l_time) / CLOCKS_PER_SEC * 1000;
 
-	/* std::list<int>::iterator begin = chain.begin();
+	std::list<int>::iterator begin = chain.begin();
 	std::list<int>::iterator end = chain.end();
 
-	std::cout << "Sorted with list: ";
+	std::cout << "list:\t";
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
-	std::cout << std::endl; */
+	std::cout << std::endl;
 	// l_check_sorted(chain);
 }
 
@@ -259,17 +259,20 @@ void	PmergeMe::v_copy_small(V_PAIR pairs, std::vector<int> *chain)
 	for (int i = 0; begin <= end; i++)
 	{
 		section_end = jacob_diff[i] <= std::distance(begin, end) ?
-			begin + jacob_diff[i] : end;
+			begin + jacob_diff[i] - 1 : end;
 		if (section_end == end)
 			check = true;
-		while (section_end >= begin)
+		for (int j = 0; j <= jacob_diff[i]; j++)
 		{
 			chain->insert(std::lower_bound(chain->begin(), chain->end(),
 				section_end->first), section_end->first);
+			if (section_end == begin)
+				break;
 			section_end--;
 		}
 		if (check)
 			break;
+		std::advance(begin, jacob_diff[i]);
 	}
 }
 
@@ -284,29 +287,29 @@ void	PmergeMe::l_copy_small(L_PAIR pairs, std::list<int> *chain)
 	L_IT	section_end;
 	bool	check = false;
 
-	for (int i = 0; begin != end; i++)
+	for (int i = 0; ; i++)
 	{
 		if (jacob_diff[i] <= std::distance(begin, end))
 		{
 			section_end = begin;
-			std::advance(section_end, jacob_diff[i]);
+			std::advance(section_end, jacob_diff[i] - 1);
 		}
 		else
 		{
 			section_end = end;
 			check = true;
 		}
-		while (section_end != begin)
+		for (int j = 0; j <= jacob_diff[i]; j++)
 		{
 			chain->insert(std::lower_bound(chain->begin(), chain->end(),
 				section_end->first), section_end->first);
-			section_end--;
 			if (section_end == begin)
-				chain->insert(std::lower_bound(chain->begin(), chain->end(),
-					section_end->first), section_end->first);
+				break;
+			section_end--;
 		}
 		if (check)
 			break;
+		std::advance(begin, jacob_diff[i]);
 	}
 }
 
