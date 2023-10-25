@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/24 13:45:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/25 08:51:39 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void	PmergeMe::l_processor(char **input)
 
 	std::list<int>	chain = l_copy_big(pairs);
 
-	l_copy_small(pairs, &chain);
+	if (pairs.size() > 1)
+		l_copy_small(pairs, &chain);
 	end_sim = std::clock();
 	_l_time = static_cast<double>(end_sim - _l_time) / CLOCKS_PER_SEC * 1000;
 
