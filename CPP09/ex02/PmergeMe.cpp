@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:12:55 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/10/25 08:51:39 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/10/27 08:46:06 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	PmergeMe::v_processor(char **input)
 		if (!input[i + 1] && _odd)
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
 	}
-	pairs = v_sort_pairs(pairs);
+	pairs = v_sort_pairs(&pairs);
 	if (_odd)
 		pairs.push_back(temp);
 
@@ -123,7 +123,7 @@ void	PmergeMe::l_processor(char **input)
 		if (!input[i + 1] && _odd)
 			temp = std::make_pair(atoi(input[i]), atoi(input[i]));
 	}
-	pairs = l_sort_pairs(pairs);
+	pairs = l_sort_pairs(&pairs);
 	if (_odd)
 		pairs.push_back(temp);
 
@@ -134,13 +134,13 @@ void	PmergeMe::l_processor(char **input)
 	end_sim = std::clock();
 	_l_time = static_cast<double>(end_sim - _l_time) / CLOCKS_PER_SEC * 1000;
 
-	std::list<int>::iterator begin = chain.begin();
+	/* std::list<int>::iterator begin = chain.begin();
 	std::list<int>::iterator end = chain.end();
 
 	std::cout << "list:\t";
 	for (; begin != end; begin++)
 		std::cout << *begin << " ";
-	std::cout << std::endl;
+	std::cout << std::endl; */
 	// l_check_sorted(chain);
 }
 
@@ -173,19 +173,19 @@ int		PmergeMe::input_validation(char **input)
 	return 0;
 }
 
-V_PAIR	PmergeMe::v_sort_pairs(V_PAIR pairs)
+V_PAIR	PmergeMe::v_sort_pairs(V_PAIR *pairs)
 {
-	int	size = pairs.size();
+	int	size = pairs->size();
 
 	if (size < 2)
-		return pairs;
+		return *pairs;
 	size /= 2;
 
-	V_PAIR	l_half(pairs.begin(), pairs.begin() + size);
-	V_PAIR	r_half(pairs.begin() + size, pairs.end());
+	V_PAIR	l_half(pairs->begin(), pairs->begin() + size);
+	V_PAIR	r_half(pairs->begin() + size, pairs->end());
 
-	l_half = v_sort_pairs(l_half);
-	r_half = v_sort_pairs(r_half);
+	l_half = v_sort_pairs(&l_half);
+	r_half = v_sort_pairs(&r_half);
 
 	V_PAIR	merged;
 
@@ -194,23 +194,23 @@ V_PAIR	PmergeMe::v_sort_pairs(V_PAIR pairs)
 	return merged;
 }
 
-L_PAIR	PmergeMe::l_sort_pairs(L_PAIR pairs)
+L_PAIR	PmergeMe::l_sort_pairs(L_PAIR *pairs)
 {
-	int	size = pairs.size();
+	int	size = pairs->size();
 
 	if (size < 2)
-		return pairs;
+		return *pairs;
 	size /= 2;
 
 	L_PAIR	l_half;
 	L_PAIR	r_half;
-	L_IT	it = pairs.begin();
+	L_IT	it = pairs->begin();
 	std::advance(it, size);
-	std::copy(pairs.begin(), it, std::back_inserter(l_half));
-	std::copy(it, pairs.end(), std::back_inserter(r_half));
+	std::copy(pairs->begin(), it, std::back_inserter(l_half));
+	std::copy(it, pairs->end(), std::back_inserter(r_half));
 
-	l_half = l_sort_pairs(l_half);
-	r_half = l_sort_pairs(r_half);
+	l_half = l_sort_pairs(&l_half);
+	r_half = l_sort_pairs(&r_half);
 
 	L_PAIR	merged;
 
