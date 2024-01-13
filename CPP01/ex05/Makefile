@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 11:14:25 by gacorrei          #+#    #+#              #
-#    Updated: 2023/08/03 11:02:39 by gacorrei         ###   ########.fr        #
+#    Updated: 2024/01/13 11:04:58 by gacorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= harl
 SRC		= main.cpp Harl.cpp
 CC		= @c++
-CFLAGS	= -Wall -Wextra -Werror -Wshadow -g3 -std=c++98 -fsanitize=address,undefined
+CFLAGS	= -Wall -Wextra -Werror -Wshadow -Wno-maybe-uninitialized -g3 -std=c++98 -fsanitize=address,undefined
 
 all:		$(NAME)
 

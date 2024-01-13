@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: gacorrei <gacorrei@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:09:22 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/08/03 12:52:00 by gacorrei         ###   ########.fr       */
+/*   Updated: 2024/01/13 11:04:45 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,26 @@ void Harl::error(void)
 	std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
 
+// If you are having trouble understanding the code, read this:
+// https://isocpp.org/wiki/faq/pointers-to-members
+
+// If you get a compiler warning about "may be used uninitialized",
+// AND you are sure that the iterator cannot go beyond the array,
+// you can ignore it. It's a false positive (use -Wno-maybe-uninitialized in Makefile)
+
+typedef void (Harl::*choice)(void);
+#define CALL_CHOICE_FN(object, ptrToMember)  ((object).*(ptrToMember))
+
 void Harl::complain(std::string level)
 {
-	void		(Harl::*choice[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	choice		choices[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (int i = 0; i < 4; i++)
 	{
 		if (level == levels[i])
 		{
-			(this->*choice[i])();
+			CALL_CHOICE_FN(*this, choices[i])();
 			break ;
 		}
 	}
